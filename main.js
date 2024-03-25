@@ -1,10 +1,15 @@
 const canvas = document.getElementById('canvas')
 const context = canvas.getContext('2d')
 
+canvas.width = 280;
+canvas.height = 280;
+
 context.strokeStyle = '#000000';  // Set the color of the lines to black
-context.lineWidth = 4;  // Set the width of the lines to 5 pixels
+context.lineWidth = 10;  // Set the width of the lines to 5 pixels
 context.lineJoin = 'round';  // Makes the line joins round
 context.lineCap = 'round';  // Makes the line caps round
+
+
 
 var isDrawing = false;
 var lastX = 0;
@@ -43,7 +48,7 @@ var previousDataUrl = null;
 var downloadTimeout = null;
 
 setInterval(function() {
-    var dataUrl = canvas.toDataURL('image/png');
+    var dataUrl = canvas.toDataURL("image/png", 1.0);
 
     // Check if the canvas is blank or hasn't changed
     var isBlank = checkIfBlank(canvas);
@@ -70,7 +75,7 @@ function checkIfBlank(canvas) {
 function downloadImage(dataUrl) {
     var link = document.createElement('a');
     link.href = dataUrl;
-    link.download = 'canvas.png';
+    link.download = 'canvas.jpeg';
     link.click();
 }
 
