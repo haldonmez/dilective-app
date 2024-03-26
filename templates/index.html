@@ -5,10 +5,10 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Canvas Test</title>
-        <link rel="stylesheet" href="styles.css" />
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/styles.css') }}">
     </head>
     <body>
-        <canvas id="canvas"></canvas>
-        <script src="main.js">  </script>
+        <div class="container"><canvas id="canvas"></canvas></div>
+        <script src="{{ url_for('static', filename='scripts/main.js') }}"></script>
     </body> 
 </html>

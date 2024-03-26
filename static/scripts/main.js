@@ -1,6 +1,7 @@
 const canvas = document.getElementById('canvas')
 const context = canvas.getContext('2d')
 
+
 canvas.width = 280;
 canvas.height = 280;
 
@@ -77,5 +78,6 @@ function downloadImage(dataUrl) {
     link.href = dataUrl;
     link.download = 'canvas.jpeg';
     link.click();
+    console.log(dataUrl)
 }
 
