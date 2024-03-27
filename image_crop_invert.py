@@ -25,7 +25,7 @@ def crop_transparency(image):
     width, height = img_cropped.size
 
     # Determine the size of the square to be the larger of the width and height
-    square_size = max(width, height) + 84 # Adding 4 to account for the 2px padding on each side
+    square_size = max(width, height) + 75 # Adding 4 to account for the 2px padding on each side
 
     # Create a new image of the square size, filled with transparent pixels
     img_square = Image.new('RGBA', (square_size, square_size), (0, 0, 0, 0))

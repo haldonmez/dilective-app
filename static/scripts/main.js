@@ -80,8 +80,14 @@ function sendImageToServer(dataUrl) {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({ image: dataUrl })
-    }).then(response => response.text())
-    .then(data => console.log(data));
+    }).then(response => response.json())  // Parse the JSON response
+    .then(data => {
+        // Update a label with the returned data
+        document.getElementsByClassName('card-body')[0].textContent = `Probability: ${data.probability}%\nPrediction: ${data.prediction}`;
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
 }
 
 
