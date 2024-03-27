@@ -60,7 +60,7 @@ setInterval(function() {
     // If the canvas has changed, reset the download timeout
     clearTimeout(downloadTimeout);
     downloadTimeout = setTimeout(function() {
-        downloadImage(dataUrl);
+        sendImageToServer(dataUrl);
     }, 2000);  // 2 seconds
 
     previousDataUrl = dataUrl;
@@ -73,11 +73,15 @@ function checkIfBlank(canvas) {
     return canvas.toDataURL() === blank.toDataURL();
 }
 
-function downloadImage(dataUrl) {
-    var link = document.createElement('a');
-    link.href = dataUrl;
-    link.download = 'canvas.jpeg';
-    link.click();
-    console.log(dataUrl)
+function sendImageToServer(dataUrl) {
+    fetch('/upload-image', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ image: dataUrl })
+    }).then(response => response.text())
+    .then(data => console.log(data));
 }
+
 
