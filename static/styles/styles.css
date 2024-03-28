@@ -15,10 +15,13 @@ html, body {
 
 #canvas{
     border: 1px solid black;
+}    
+
+.bottom-card-container{
+    display: flex;
+    flex-direction: row;
 }
 
 .spinner-border{
     display: none;
 }
-
-
