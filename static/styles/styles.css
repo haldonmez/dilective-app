@@ -17,5 +17,8 @@ html, body {
     border: 1px solid black;
 }
 
+.spinner-border{
+    display: none;
+}
 
 

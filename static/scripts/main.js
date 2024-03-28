@@ -1,12 +1,11 @@
 const canvas = document.getElementById('canvas')
 const context = canvas.getContext('2d')
 
-
 canvas.width = 280;
 canvas.height = 280;
 
 context.strokeStyle = '#000000';  // Set the color of the lines to black
-context.lineWidth = 10;  // Set the width of the lines to 5 pixels
+context.lineWidth = 7;  // Set the width of the lines to 5 pixels
 context.lineJoin = 'round';  // Makes the line joins round
 context.lineCap = 'round';  // Makes the line caps round
 
@@ -44,7 +43,6 @@ function draw(context, x, y) {
     [lastX, lastY] = [x, y];
 }
 
-
 var previousDataUrl = null;
 var downloadTimeout = null;
 
@@ -59,8 +57,14 @@ setInterval(function() {
 
     // If the canvas has changed, reset the download timeout
     clearTimeout(downloadTimeout);
+    spinnerTimeout = setTimeout(function(){
+        const spinner = document.querySelector('.spinner-border');
+        spinner.style.display = 'block';
+    }, 650); // 650 milisecond
     downloadTimeout = setTimeout(function() {
         sendImageToServer(dataUrl);
+        const spinner = document.querySelector('.spinner-border');
+        spinner.style.display = 'none';
     }, 2000);  // 2 seconds
 
     previousDataUrl = dataUrl;
@@ -83,11 +87,12 @@ function sendImageToServer(dataUrl) {
     }).then(response => response.json())  // Parse the JSON response
     .then(data => {
         // Update a label with the returned data
-        document.getElementsByClassName('card-body')[0].textContent = `Probability: ${data.probability}%\nPrediction: ${data.prediction}`;
+        document.getElementsByClassName('prediction-card')[0].textContent = `Probability: ${data.probability}%\nPrediction: ${data.prediction}`;
     })
     .catch((error) => {
         console.error('Error:', error);
     });
 }
+
 
 

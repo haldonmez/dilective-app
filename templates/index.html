@@ -10,10 +10,18 @@
     </head>
     <body>
         <div class="container">
+            <div class="card">
+                <div class="card-body seen-card">
+                    This is the card that needs to be drawn.
+                </div>
+            </div>
             <canvas id="canvas"></canvas>
             <div class="card">
-                <div class="card-body">
-                  This is some text within a card body.
+                <div class="spinner-border" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <div class="card-body prediction-card">
+                    This is the prediction card.
                 </div>
             </div>
         </div>
