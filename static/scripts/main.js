@@ -77,6 +77,17 @@ function checkIfBlank(canvas) {
     return canvas.toDataURL() === blank.toDataURL();
 }
 
+function clearCanvas(canvas) {
+    var clearButton = document.getElementsByClassName('clearButton')[0];
+    var context = canvas.getContext('2d');
+
+    clearButton.addEventListener('click', function() {
+        // Clear the canvas
+        context.clearRect(0, 0, canvas.width, canvas.height);
+    });
+}
+
+
 function sendImageToServer(dataUrl) {
     fetch('/upload-image', {
         method: 'POST',
@@ -95,4 +106,8 @@ function sendImageToServer(dataUrl) {
 }
 
 
+window.onload = function() {
+    var canvas = document.getElementById('canvas');
+    clearCanvas(canvas);
+};
 
