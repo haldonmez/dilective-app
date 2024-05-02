@@ -6,7 +6,7 @@ With this app I've used canvas to get custom handwritten inputs and ran them thr
 
 ## Ekran Görüntüleri
 
-![Uygulama Ekran Görüntüsü]("readme_images\first_version.png")
+![Uygulama Ekran Görüntüsü]("readme_images/first_version.png")
 
 After writing
-![Uygulama Ekran Görüntüsü]("readme_images\first_version_wr.png")
+![Uygulama Ekran Görüntüsü]("readme_images/first_version_wr.png")
