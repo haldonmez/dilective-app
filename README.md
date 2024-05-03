@@ -16,4 +16,3 @@ With this application through the usage of a 280x280 canvas we can manually inpu
         <img src="readme_images\first_version_wr.png" width="250" />
     </div>
 </div>
-
