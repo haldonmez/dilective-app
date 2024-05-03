@@ -15,11 +15,17 @@
                     This is the card that needs to be drawn.
                 </div>
             </div>
-            <div style="display: flex; justify-content: flex-end;align-items: flex-start;">
-                <canvas id="canvas"></canvas>
-                <button type="button" class="btn btn-outline-secondary clearButton" style="border: none; margin-left: -34px;">X</button>
-                
+            <div style="display: flex; flex-direction: column; align-items: center;">
+                <div style="display: flex; justify-content: space-between; width: 100%;">
+                    <button>Button 1</button>
+                    <button>Button 2</button>
+                </div>
+                <div style="display: flex; justify-content: flex-end; align-items: flex-start;">
+                    <canvas id="canvas"></canvas>
+                    <button type="button" class="btn btn-outline-secondary clearButton" style="border: none; margin-left: -34px;">X</button>
+                </div>
             </div>
+            
             <div class="card bottom-card-container">
                 <div class="d-flex align-items-center">
                     <div class="spinner-border ms-auto" role="status">
