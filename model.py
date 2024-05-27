@@ -78,3 +78,78 @@ def model_loading(tensor):
 
     return percentage, predicted_class.item()
 
+#=====================================================================================
+
+class LetterRecognizerModel4(nn.Module):
+    def __init__(self, input_size, output_size):
+        super(LetterRecognizerModel4, self).__init__()
+        
+        self.conv_layers = nn.Sequential(
+            nn.Conv2d(input_size, 32, kernel_size=3, padding=1),
+            nn.ReLU(),
+            nn.Conv2d(32, 32, kernel_size=3, padding=1),
+            nn.ReLU(),
+            nn.BatchNorm2d(32),
+            nn.MaxPool2d(2, 2),
+            nn.Dropout(0.55),
+            
+            nn.Conv2d(32, 64, kernel_size=3, padding=1),
+            nn.ReLU(),
+            nn.Conv2d(64, 64, kernel_size=3, padding=1),
+            nn.ReLU(),
+            nn.BatchNorm2d(64),
+            nn.MaxPool2d(2, 2),
+            nn.Dropout(0.55),
+            
+            nn.Conv2d(64, 128, kernel_size=3, padding=1),
+            nn.ReLU(),
+            nn.Conv2d(128, 128, kernel_size=3, padding=1),
+            nn.ReLU(),
+            nn.BatchNorm2d(128),
+            nn.MaxPool2d(2, 2),
+            nn.Dropout(0.55)
+        )
+        
+        self.fc_layers = nn.Sequential(
+            nn.Linear(128*3*3, 512),
+            #nn.BatchNorm4d(512),
+            nn.Dropout(0.25),
+            
+            nn.Linear(512, 256),
+            #nn.BatchNorm4d(256),
+            nn.Dropout(0.55),
+            
+            nn.Linear(256, output_size)
+        )
+        
+    def forward(self, x):
+        x = self.conv_layers(x)
+        x = x.view(x.size(0), -1)  # Flatten the output
+        x = self.fc_layers(x)
+        return x
+    
+
+def model_loading_emnist(tensor):
+    import torch
+
+        # Create a new instance of FashionMNISTModelV3 (the same class as our saved state_dict())
+    # Note: loading model will error if the shapes here aren't the same as the saved version
+    MODEL_SAVE_PATH = "models\\emnist_model_4.pth"
+    loaded_model = LetterRecognizerModel4(input_size=1,
+                                        output_size=27)
+
+    # Load in the saved state_dict()
+    loaded_model.load_state_dict(torch.load(f=MODEL_SAVE_PATH))
+
+    # Send model to GPU
+    loaded_model = loaded_model.to("cpu")
+
+    output = loaded_model(tensor)
+
+    _, predicted_class = torch.max(output, 1)
+    probabilities = F.softmax(output, dim=1)
+    predicted_class_probability = probabilities[0, predicted_class.item()].item()
+
+    percentage = "{:.6f}".format(predicted_class_probability * 100)
+
+    return percentage, predicted_class.item()

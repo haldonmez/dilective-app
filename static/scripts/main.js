@@ -87,15 +87,36 @@ function clearCanvas(canvas) {
     });
 }
 
+window.onload = function() {
+    var canvas = document.getElementById('canvas');
+    clearCanvas(canvas);
 
-function sendImageToServer(dataUrl) {
+    // Add event listeners to the buttons
+    document.querySelector('.digit-model-button').addEventListener('click', function() {
+        sendImageToServer(canvas.toDataURL("image/png", 1.0), 'mnist');
+    });
+
+    document.querySelector('.letter-model-button').addEventListener('click', function() {
+        sendImageToServer(canvas.toDataURL("image/png", 'emnist'), 'emnist');
+    });
+};
+
+
+function sendImageToServer(dataUrl, modelType) {
+    // Log the data you're sending to the server
+    console.log('Sending data to server:', { image: dataUrl, model_type: modelType });
+
     fetch('/upload-image', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ image: dataUrl })
-    }).then(response => response.json())  // Parse the JSON response
+        body: JSON.stringify({
+            image: dataUrl,
+            model_type: modelType  // include the model type
+        })
+    })
+    .then(response => response.json())  // Parse the JSON response
     .then(data => {
         // Update a label with the returned data
         document.getElementsByClassName('prediction-card')[0].textContent = `Probability: ${data.probability}%\nPrediction: ${data.prediction}`;
@@ -106,8 +127,5 @@ function sendImageToServer(dataUrl) {
 }
 
 
-window.onload = function() {
-    var canvas = document.getElementById('canvas');
-    clearCanvas(canvas);
-};
+
 
