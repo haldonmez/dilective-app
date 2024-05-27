@@ -64,7 +64,7 @@ def upload_image():
     if model_type == 'mnist':
         model = model_loading(image_predict)  # load the MNIST model
         probability, prediction = str(model[0]), str(model[1])
-    else:
+    elif model_type == "emnist":
         model = model_loading_emnist(image_predict)  # load the EMNIST model
         probability, prediction = str(model[0]), mapping.get(model[1], 'Unknown')  # map the prediction to a letter
 

@@ -46,10 +46,7 @@ def crop_transparency(image):
 
     im_invert = ImageOps.invert(rgb_img)
 
-    transposed_img = im_invert.transpose(Image.TRANSPOSE)
-    # Save the transposed image
-
     # Save the padded square image
-    transposed_img.save("last_inverted_cropped.png")
+    im_invert.save("last_inverted_cropped.png")
 
-    return transposed_img
+    return im_invert

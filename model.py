@@ -52,32 +52,6 @@ class DigitRecognizerMNISTV3(nn.Module):
         # print(x.shape)
         return x
 
-def model_loading(tensor):
-    import torch
-
-        # Create a new instance of FashionMNISTModelV3 (the same class as our saved state_dict())
-    # Note: loading model will error if the shapes here aren't the same as the saved version
-    MODEL_SAVE_PATH = "models/03_pytorch_computer_vision_model_3.pth"
-    loaded_model_3 = DigitRecognizerMNISTV3(input_shape=1,
-                                        hidden_units=10, # try changing this to 128 and seeing what happens
-                                        output_shape=10)
-
-    # Load in the saved state_dict()
-    loaded_model_3.load_state_dict(torch.load(f=MODEL_SAVE_PATH))
-
-    # Send model to GPU
-    loaded_model_3 = loaded_model_3.to("cpu")
-
-    output = loaded_model_3(tensor)
-
-    _, predicted_class = torch.max(output, 1)
-    probabilities = F.softmax(output, dim=1)
-    predicted_class_probability = probabilities[0, predicted_class.item()].item()
-
-    percentage = "{:.6f}".format(predicted_class_probability * 100)
-
-    return percentage, predicted_class.item()
-
 #=====================================================================================
 
 class LetterRecognizerModel4(nn.Module):
@@ -127,24 +101,34 @@ class LetterRecognizerModel4(nn.Module):
         x = x.view(x.size(0), -1)  # Flatten the output
         x = self.fc_layers(x)
         return x
-    
+
+digit_model = DigitRecognizerMNISTV3(input_shape=1, hidden_units=10, output_shape=10)
+letter_model = LetterRecognizerModel4(input_size=1, output_size=27)
+
+# Load the models once when your application starts
+digit_model.load_state_dict(torch.load("models/03_pytorch_computer_vision_model_3.pth"))
+letter_model.load_state_dict(torch.load("models\\emnist_model_4.pth"))
+
+
+def model_loading(tensor):
+    import torch
+
+    output = digit_model(tensor)
+
+    _, predicted_class = torch.max(output, 1)
+    probabilities = F.softmax(output, dim=1)
+    predicted_class_probability = probabilities[0, predicted_class.item()].item()
+
+    percentage = "{:.6f}".format(predicted_class_probability * 100)
+
+    return percentage, predicted_class.item()
+
+
 
 def model_loading_emnist(tensor):
     import torch
 
-        # Create a new instance of FashionMNISTModelV3 (the same class as our saved state_dict())
-    # Note: loading model will error if the shapes here aren't the same as the saved version
-    MODEL_SAVE_PATH = "models\\emnist_model_4.pth"
-    loaded_model = LetterRecognizerModel4(input_size=1,
-                                        output_size=27)
-
-    # Load in the saved state_dict()
-    loaded_model.load_state_dict(torch.load(f=MODEL_SAVE_PATH))
-
-    # Send model to GPU
-    loaded_model = loaded_model.to("cpu")
-
-    output = loaded_model(tensor)
+    output = output = letter_model(tensor)
 
     _, predicted_class = torch.max(output, 1)
     probabilities = F.softmax(output, dim=1)
