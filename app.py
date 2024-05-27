@@ -13,6 +13,36 @@ DigitRecognizerMNISTV3 = DigitRecognizerMNISTV3
 
 LetterRecognizerModel4 = LetterRecognizerModel4
 
+mapping = {
+    0: 'n/A',
+    1: 'a',
+    2: 'b',
+    3: 'c',
+    4: 'd',
+    5: 'e',
+    6: 'f',
+    7: 'g',
+    8: 'h',
+    9: 'i',
+    10: 'j',
+    11: 'k',
+    12: 'l',
+    13: 'm',
+    14: 'n',
+    15: 'o',
+    16: 'p',
+    17: 'q',
+    18: 'r',
+    19: 's',
+    20: 't',
+    21: 'u',
+    22: 'v',
+    23: 'w',
+    24: 'x',
+    25: 'y',
+    26: 'z'
+}
+
 app = Flask(__name__)
 
 @app.route("/", methods=["GET"])
@@ -29,17 +59,16 @@ def upload_image():
     image_ready = crop_transparency(image)
     image_predict = image_transform(image_ready)
     
-    model_type = data.get('model_type', 'emnist')  # get the model type from the request data
-    print(f"Model type: {model_type}")  # print the model type
-    
+    model_type = data.get('model_type', 'mnist')  # get the model type from the request data
+
     if model_type == 'mnist':
         model = model_loading(image_predict)  # load the MNIST model
+        probability, prediction = str(model[0]), str(model[1])
     else:
         model = model_loading_emnist(image_predict)  # load the EMNIST model
+        probability, prediction = str(model[0]), mapping.get(model[1], 'Unknown')  # map the prediction to a letter
 
-    probability, prediction = str(model[0]), str(model[1])
     return jsonify({"probability": probability, "prediction": prediction}), 200
-
 
 if __name__ == "__main__":
     app.run(port=4000, debug=True)

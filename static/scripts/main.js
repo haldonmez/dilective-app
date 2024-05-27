@@ -97,7 +97,7 @@ window.onload = function() {
     });
 
     document.querySelector('.letter-model-button').addEventListener('click', function() {
-        sendImageToServer(canvas.toDataURL("image/png", 'emnist'), 'emnist');
+        sendImageToServer(canvas.toDataURL("image/png", 1.0), 'emnist');
     });
 };
 
