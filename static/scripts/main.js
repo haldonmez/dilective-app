@@ -93,16 +93,23 @@ window.onload = function() {
 
     // Add event listeners to the buttons
     document.querySelector('.digit-model-button').addEventListener('click', function() {
-        sendImageToServer(canvas.toDataURL("image/png", 1.0), 'mnist');
+        localStorage.setItem('modelType', 'mnist');  // Save the model type to localStorage
+
+        sendImageToServer(canvas.toDataURL("image/png", 1.0));
     });
 
     document.querySelector('.letter-model-button').addEventListener('click', function() {
+        localStorage.setItem('modelType', 'emnist');  // Save the model type to localStorage
+
         sendImageToServer(canvas.toDataURL("image/png", 1.0), 'emnist');
     });
 };
 
 
-function sendImageToServer(dataUrl, modelType) {
+function sendImageToServer(dataUrl) {
+
+    var modelType = localStorage.getItem('modelType') || 'mnist';  // Get the model type from localStorage
+    
     // Log the data you're sending to the server
     console.log('Sending data to server:', { image: dataUrl, model_type: modelType });
 
