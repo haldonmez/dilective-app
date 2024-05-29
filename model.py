@@ -107,11 +107,13 @@ letter_model = LetterRecognizerModel4(input_size=1, output_size=27)
 
 # Load the models once when your application starts
 digit_model.load_state_dict(torch.load("models/03_pytorch_computer_vision_model_3.pth"))
-letter_model.load_state_dict(torch.load("models\\emnist_model_4.pth"))
+letter_model.load_state_dict(torch.load("models\\emnist_model_4_ver2.pth"))
 
 
 def model_loading(tensor):
     import torch
+    # Set the model to evaluation mode
+    letter_model.eval()
 
     output = digit_model(tensor)
 
