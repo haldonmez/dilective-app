@@ -113,7 +113,7 @@ letter_model.load_state_dict(torch.load("models\\emnist_model_4_ver2.pth"))
 def model_loading(tensor):
     import torch
     # Set the model to evaluation mode
-    letter_model.eval()
+    digit_model.eval()
 
     output = digit_model(tensor)
 
@@ -129,6 +129,8 @@ def model_loading(tensor):
 
 def model_loading_emnist(tensor):
     import torch
+    # Set the model to evaluation mode
+    letter_model.eval()
 
     output = output = letter_model(tensor)
 
