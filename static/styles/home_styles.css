@@ -106,22 +106,28 @@ body, html {
 }
 
 .container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  flex-direction: column;
-}
-.item {
-  margin: 10px;
-  font-size: 2em;
-  color: #1E611E;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 700;
-}
-.item:hover + .reveal {
-  visibility: visible;
-}
-.reveal {
-  visibility: hidden;
-}
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: 100vh;
+    flex-direction: row;
+    padding: 0 20px;
+  }
+  .item {
+    margin: 10px;
+    font-size: 2em;
+    color: #1E611E;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    width: 30%;
+    text-align: left;
+  }
+  .item:hover + .reveal {
+    visibility: visible;
+  }
+  .reveal {
+    visibility: hidden;
+    width: 60%;
+    text-align: right;
+  }
+  
