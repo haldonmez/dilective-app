@@ -45,7 +45,11 @@ mapping = {
 
 app = Flask(__name__)
 
-@app.route("/", methods=["GET"])
+@app.route("/")
+def main():
+    return render_template("home.html")
+
+@app.route("/index.html", methods=["GET"])
 def hello_world():
     return render_template("index.html")
 
