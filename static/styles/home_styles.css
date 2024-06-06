@@ -101,17 +101,18 @@ body, html {
     background: #A9C8BC;
     text-align: center;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+    padding: 20px; /* Adjust if needed to create spacing from the edges */
+    position: relative; /* Establish positioning context for absolute positioning */
 }
 
 .container {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    height: 100vh;
-    flex-direction: row;
-    padding: 0 20px;
+    flex-direction: column; /* Stack items vertically */
+    align-items: flex-start; /* Align items to the left */
+    width: 100%; /* Ensure container takes full width */
+    height: auto; /* Allow container height to adjust based on content */
   }
   .item {
     margin: 10px;
