@@ -19,22 +19,43 @@
             <div class="half-circle"></div>
             <div class="parallax-content">
                 <h1>DİLEKTİF</h1>
-                <p>YAZARAK ÖĞRENMENİN EN GÜZEL YOLU!</p>
                 <div class="arrow">
-                    <a href="#second-page" class="scroll-indicator">▼</a>
+                    <a href="#second-page" class="scroll-indicator">
+                        <div class="scrolldown" style="--color: #1E611E">
+                            <div class="chevrons">
+                                <div class="chevrondown"></div>
+                                <div class="chevrondown"></div>
+                            </div>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
         <div id="second-page" class="second-page">
             <div class="container">
-              <div class="item" onmouseover="showText(1)" onmouseout="hideText(1)">Öğren!</div>
+              <div class="item" onmouseover="showText(1)" onmouseout="hideText(1)">
+                <button class="button" data-text="Awesome" >
+                <span class="actual-text">&nbsp;Öğren!&nbsp;</span>
+                <span aria-hidden="true" class="hover-text">&nbsp;Öğren!&nbsp;</span>
+                </button>
+              </div>
               <div class="reveal" id="text1">Reveal Text 1</div>
 
-              <div class="item" onmouseover="showText(2)" onmouseout="hideText(2)">Dinle!</div>
-              <div class="reveal" id="text2">Reveal Text 2</div>
+              <div class="item" onmouseover="showText(2)" onmouseout="hideText(2)">
+                <button class="button" data-text="Awesome" >
+                <span class="actual-text">&nbsp;Dinle!&nbsp;</span>
+                <span aria-hidden="true" class="hover-text">&nbsp;Dinle!&nbsp;</span>
+                </button>
+              </div>
+              <div class="reveal" id="text1">Reveal Text 2</div>
 
-              <div class="item" onmouseover="showText(3)" onmouseout="hideText(3)">Yarış!</div>
-              <div class="reveal" id="text3">Reveal Text 3</div>
+              <div class="item" onmouseover="showText(3)" onmouseout="hideText(3)">
+                <button class="button" data-text="Awesome" >
+                <span class="actual-text">&nbsp;Yarış!&nbsp;</span>
+                <span aria-hidden="true" class="hover-text">&nbsp;Yarış!&nbsp;</span>
+                </button>
+              </div>
+              <div class="reveal" id="text1">Reveal Text 3</div>
             </div>
         </div>
         <script src="{{ url_for('static', filename='scripts/home_main.js') }}"></script>
