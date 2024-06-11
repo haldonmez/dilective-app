@@ -3,9 +3,21 @@ document.querySelector('.scroll-indicator').addEventListener('click', function(e
     document.querySelector('#second-page').scrollIntoView({ behavior: 'smooth' });
 });
 
-function showText(num) {
-  document.getElementById('text' + num).style.visibility = 'visible';
+function showText1() {
+  document.getElementById(text1).style.visibility = 'visible';
 }
-function hideText(num) {
-  document.getElementById('text' + num).style.visibility = 'hidden';
+function hideText1() {
+  document.getElementById(text1).style.visibility = 'hidden';
+}
+function showText2() {
+  document.getElementById(text2).style.visibility = 'visible';
+}
+function hideText2() {
+  document.getElementById(text2).style.visibility = 'hidden';
+}
+function showText3() {
+  document.getElementById(text3).style.visibility = 'visible';
+}
+function hideText3() {
+  document.getElementById(text3).style.visibility = 'hidden';
 }
