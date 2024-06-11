@@ -203,37 +203,53 @@ body, html {
     background: #A9C8BC;
     text-align: center;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
-    padding: 20px; /* Adjust if needed to create spacing from the edges */
-    position: relative; /* Establish positioning context for absolute positioning */
+    padding: 20px;
+    position: relative;
 }
 
 .container {
     display: flex;
-    flex-direction: column; /* Stack items vertically */
-    align-items: flex-start; /* Align items to the left */
-    width: 100%; /* Ensure container takes full width */
-    height: auto; /* Allow container height to adjust based on content */
-  }
-  .item {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    height: auto;
+}
+
+.item-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin: 10px 0;
+    position: relative;
+}
+
+.item {
     margin: 10px;
     font-size: 2em;
     color: #1E611E;
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    width: 21%;
-    text-align: left;
-  }
-  .item:hover + .reveal {
-    visibility: visible;
-  }
-  .reveal {
+    cursor: pointer;
+}
+
+.reveal {
     visibility: hidden;
-    width: 60%;
-    text-align: right;
-  }
-  
+    opacity: 0;
+    transition: visibility 0s, opacity 0.5s ease-in-out;
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.reveal.vis {
+    visibility: visible;
+    opacity: 1;
+}
+
 /* === removing default button style ===*/
 .button {
     margin: 0;

@@ -4,20 +4,27 @@ document.querySelector('.scroll-indicator').addEventListener('click', function(e
 });
 
 function showText1() {
-  document.getElementById(text1).style.visibility = 'visible';
+  document.getElementById('text1').classList.add('vis');
 }
+
 function hideText1() {
-  document.getElementById(text1).style.visibility = 'hidden';
+  document.getElementById('text1').classList.remove('vis');
 }
+
 function showText2() {
-  document.getElementById(text2).style.visibility = 'visible';
+  document.getElementById('text2').classList.add('vis');
 }
+
 function hideText2() {
-  document.getElementById(text2).style.visibility = 'hidden';
+  document.getElementById('text2').classList.remove('vis');
 }
+
 function showText3() {
-  document.getElementById(text3).style.visibility = 'visible';
+  document.getElementById('text3').classList.add('vis');
 }
+
 function hideText3() {
-  document.getElementById(text3).style.visibility = 'hidden';
+  document.getElementById('text3').classList.remove('vis');
 }
+
+
