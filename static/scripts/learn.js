@@ -133,6 +133,17 @@ function sendImageToServer(dataUrl) {
     });
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+    const canvas = document.getElementById('canvas');
+    const guideGif = document.getElementById('guideGif');
+
+    // Set GIF size to match the canvas size
+    guideGif.style.width = `${canvas.width}px`;
+    guideGif.style.height = `${canvas.height}px`;
+
+    // Optional: Adjust GIF opacity if needed
+    guideGif.style.opacity = 0.5; // Adjust opacity as needed
+});
 
 
 

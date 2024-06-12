@@ -49,3 +49,7 @@ html, body {
 .model-button:active{
     transform:scale(0.935)
 }
+
+#guideGif {
+    pointer-events: none; /* Allows clicks to pass through to the canvas */
+}
