@@ -33,35 +33,31 @@
         </div>
         <div id="second-page" class="second-page">
             <div class="container">
-              <div class="item-container">
-                <div class="item" onmouseover="showText1()" onmouseout="hideText1()">
-                    <button class="button" data-text="Awesome">
-                        <span class="actual-text">&nbsp;Öğren!&nbsp;</span>
-                        <span aria-hidden="true" class="hover-text vis">&nbsp;Öğren!&nbsp;</span>
-                    </button>
+                <div class="items">
+                    <div class="item" onmouseover="showText1()" onmouseout="hideText1()">
+                        <button class="button" data-text="Awesome">
+                            <span class="actual-text">&nbsp;Öğren!&nbsp;</span>
+                            <span aria-hidden="true" class="hover-text vis">&nbsp;Öğren!&nbsp;</span>
+                        </button>
+                    </div>
+                    <div class="item" onmouseover="showText2()" onmouseout="hideText2()">
+                        <button class="button" data-text="Awesome">
+                            <span class="actual-text">&nbsp;Dinle!&nbsp;</span>
+                            <span aria-hidden="true" class="hover-text vis">&nbsp;Dinle!&nbsp;</span>
+                        </button>
+                    </div>
+                    <div class="item" onmouseover="showText3()" onmouseout="hideText3()" onclick="navigateToIndex()">
+                        <button class="button" data-text="Awesome">
+                            <span class="actual-text">&nbsp;Yarış!&nbsp;</span>
+                            <span aria-hidden="true" class="hover-text vis">&nbsp;Yarış!&nbsp;</span>
+                        </button>
+                    </div>
                 </div>
-                <div class="reveal" id="text1">İnteraktif rehber ile yazı yazmayı öğrenin! Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi laudantium iste esse? Soluta magnam quod porro eos ex assumenda, totam pariatur quisquam voluptate consequuntur earum adipisci ea labore nesciunt dignissimos. Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi sapiente mollitia, eius tempora fuga perspiciatis! Natus, maxime omnis sunt nemo reiciendis libero? Enim nostrum dolorem possimus quaerat voluptate quod commodi!</div>
-            </div>
-
-            <div class="item-container">
-                <div class="item" onmouseover="showText2()" onmouseout="hideText2()">
-                    <button class="button" data-text="Awesome">
-                        <span class="actual-text">&nbsp;Dinle!&nbsp;</span>
-                        <span aria-hidden="true" class="hover-text vis">&nbsp;Dinle!&nbsp;</span>
-                    </button>
+                <div class="reveal-container">
+                    <div class="reveal" id="text1">İnteraktif rehber ile yazı yazmayı öğrenin! Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi laudantium iste esse? Soluta magnam quod porro eos ex assumenda, totam pariatur quisquam voluptate consequuntur earum adipisci ea labore nesciunt dignissimos. Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi sapiente mollitia, eius tempora fuga perspiciatis! Natus, maxime omnis sunt nemo reiciendis libero? Enim nostrum dolorem possimus quaerat voluptate quod commodi!</div>
+                    <div class="reveal" id="text2">Reveal Text 2 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis id, tempora at omnis quaerat beatae aut deleniti? Ipsa mollitia, in debitis minima, atque at nihil odio porro aperiam ratione unde? Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab sit nobis asperiores maxime perferendis veritatis, exercitationem culpa consequuntur repudiandae numquam pariatur necessitatibus porro corrupti alias at ea animi soluta earum. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores est ad pariatur, tempore eius voluptatibus odio ab veritatis, explicabo numquam a itaque ut dolor molestiae facere dolore porro repellendus nulla.</div>
+                    <div class="reveal" id="text3">Reveal Text 3</div>
                 </div>
-                <div class="reveal" id="text2">Reveal Text 2</div>
-            </div>
-
-            <div class="item-container">
-                <div class="item" onmouseover="showText3()" onmouseout="hideText3()" onclick="navigateToIndex()">
-                    <button class="button" data-text="Awesome">
-                        <span class="actual-text">&nbsp;Yarış!&nbsp;</span>
-                        <span aria-hidden="true" class="hover-text vis">&nbsp;Yarış!&nbsp;</span>
-                    </button>
-                </div>
-                <div class="reveal" id="text3">Reveal Text 3</div>
-            </div>
             </div>
         </div>
         <script src="{{ url_for('static', filename='scripts/home_main.js') }}"></script>
