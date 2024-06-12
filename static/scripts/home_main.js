@@ -26,5 +26,7 @@ function showText3() {
 function hideText3() {
   document.getElementById('text3').classList.remove('vis');
 }
-
+function navigateToIndex() {
+  window.location.href = "/index.html";
+}
 
