@@ -248,13 +248,13 @@ body, html {
     position: absolute;
     line-height: 1.66em;
     margin: 0;
-    max-width: 600px; /* Set the maximum width of the text element */
+    max-width: 1000px; /* Set the maximum width of the text element */
     max-height: 200px; /* Set the maximum height of the text element */
     overflow: hidden;
     font-family: 'Poppins', sans-serif;
-    font-size: 20px;
-    background: linear-gradient(to right, #46aa46 0, #59f159 10%, #1E611E 20%);
-    background-position: 0;
+    font-size: 35px;
+    background: linear-gradient(to right, #46aa46 0, #59f159 10%, #1e611ecb 20%);
+    background-position : 0;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: shine 4s infinite linear;
