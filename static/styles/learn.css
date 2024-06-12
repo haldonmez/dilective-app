@@ -1,0 +1,51 @@
+html, body { 
+    height: 100%; 
+    margin: 0px;
+
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    gap: 10%;
+}
+
+#canvas{
+    border: 1px solid black;
+}    
+
+.bottom-card-container{
+    display: flex;
+    flex-direction: row;
+}
+
+.spinner-border{
+    display: none;
+}
+
+.model-button{
+    padding: 1.3em 1.3em;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+    color: #000;
+    background-color: #fff;
+    border: none;
+    border-radius: none;
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+}
+
+.model-button:hover{
+    background-color: #23c483;
+    color: #fff;
+}
+
+.model-button:active{
+    transform:scale(0.935)
+}

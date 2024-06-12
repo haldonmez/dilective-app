@@ -40,3 +40,6 @@ function navigateToIndex() {
   window.location.href = "/index.html";
 }
 
+function navigateToLearn() {
+  window.location.href = "/learn.html";
+}

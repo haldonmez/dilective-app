@@ -50,8 +50,12 @@ def main():
     return render_template("home.html")
 
 @app.route("/index.html", methods=["GET"])
-def hello_world():
+def racing_page():
     return render_template("index.html")
+
+@app.route("/learn.html", methods=["GET"])
+def learning_page():
+    return render_template("learn.html")
 
 @app.route("/upload-image", methods=["POST"])
 def upload_image():
