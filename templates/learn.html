@@ -20,10 +20,10 @@
                     <button class="model-button digit-model-button" style="width: 140px;">Digit Model</button>
                     <button class="model-button letter-model-button" style="width: 140px;">Letter Model</button>
                 </div>
-                <div style="display: flex; justify-content: flex-end; align-items: flex-start;">
+                <div class="canvas-container" style="position: relative; width: 280px; height: 280px;">
+                    <img id="guideGif" src="{{ url_for('static', filename='letters_gif/B.gif') }}" alt="Guide GIF">
                     <canvas id="canvas"></canvas>
-                    <img id="guideGif" src="{{ url_for('static', filename='letters_gif/B.gif') }}" alt="Guide GIF" style="opacity: 0.5;">
-                    <button type="button" class="btn btn-outline-secondary clearButton" style="border: none; margin-left: -34px;">X</button>
+                    <button type="button" class="btn btn-outline-secondary clearButton" style="border: none; margin-left: -34px; position: absolute; top: 0; right: 0;">X</button>
                 </div>
             </div>
 
