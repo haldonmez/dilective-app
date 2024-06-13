@@ -15,23 +15,35 @@ var isDrawing = false;
 var lastX = 0;
 var lastY = 0;
 
-canvas.addEventListener('mousedown', function(event) {
+// Reference to the GIF element
+const guideGif = document.getElementById('guideGif');
+
+// Event Listeners for Drawing
+canvas.addEventListener('mousedown', (event) => {
     isDrawing = true;
-    [lastX, lastY] = [event.clientX - canvas.offsetLeft, event.clientY - canvas.offsetTop];
+    [lastX, lastY] = [event.offsetX, event.offsetY];
+    
+    // Hide the GIF when drawing starts
+    guideGif.style.display = 'none';
 });
 
-canvas.addEventListener('mouseup', function() {
+// Event Listeners for Drawing
+canvas.addEventListener('mousedown', (event) => {
+    isDrawing = true;
+    [lastX, lastY] = [event.offsetX, event.offsetY]; // Adjusted to event.offsetX and event.offsetY
+});
+
+canvas.addEventListener('mouseup', () => {
     isDrawing = false;
 });
 
-canvas.addEventListener('mouseleave', function() {
+canvas.addEventListener('mouseleave', () => {
     isDrawing = false;
 });
 
-canvas.addEventListener('mousemove', function(event) {
+canvas.addEventListener('mousemove', (event) => {
     if (!isDrawing) return;
-    var x = event.clientX - canvas.offsetLeft;
-    var y = event.clientY - canvas.offsetTop;
+    const [x, y] = [event.offsetX, event.offsetY]; // Adjusted to event.offsetX and event.offsetY
     draw(context, x, y);
 });
 
@@ -132,18 +144,6 @@ function sendImageToServer(dataUrl) {
         console.error('Error:', error);
     });
 }
-
-document.addEventListener('DOMContentLoaded', () => {
-    const canvas = document.getElementById('canvas');
-    const guideGif = document.getElementById('guideGif');
-
-    // Set GIF size to match the canvas size
-    guideGif.style.width = `${canvas.width}px`;
-    guideGif.style.height = `${canvas.height}px`;
-
-    // Optional: Adjust GIF opacity if needed
-    guideGif.style.opacity = 0.5; // Adjust opacity as needed
-});
 
 
 
