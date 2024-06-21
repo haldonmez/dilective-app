@@ -9,33 +9,11 @@
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/learn.css') }}">
     </head>
     <body>
-        <div class="container">
-            <div class="card">
-                <div class="card-body seen-card">
-                    This is the card that needs to be drawn.
-                </div>
-            </div>
-            <div style="display: flex; flex-direction: column; align-items: center;">
-                <div style="display: flex; justify-content: center; width: 100%;">
-                    <button class="model-button digit-model-button" style="width: 140px;">Digit Model</button>
-                    <button class="model-button letter-model-button" style="width: 140px;">Letter Model</button>
-                </div>
-                <div class="canvas-container" style="position: relative; width: 280px; height: 280px;">
-                    <img id="guideGif" src="{{ url_for('static', filename='letters_gif/B.gif') }}" alt="Guide GIF">
-                    <canvas id="canvas"></canvas>
-                    <button type="button" class="btn btn-outline-secondary clearButton" style="border: none; margin-left: -34px; position: absolute; top: 0; right: 0;">X</button>
-                </div>
-            </div>
-
-            <div class="card bottom-card-container">
-                <div class="d-flex align-items-center">
-                    <div class="spinner-border ms-auto" role="status">
-                        <span class="visually-hidden">Loading...</span>
-                    </div>
-                </div>
-                <div class="card-body prediction-card">
-                    This is the prediction card.
-                </div>
+        <div class="container2">
+            <div class="canvas-container" style="position: relative; width: 280px; height: 280px;">
+                <img id="guideGif" src="{{ url_for('static', filename='letters_gif/B.gif') }}" alt="Guide GIF">
+                <canvas id="canvas"></canvas>
+                <button type="button" class="btn btn-outline-secondary clearButton" style="border: none; margin-left: -34px; position: absolute; top: 0; right: 0;">X</button>
             </div>
         </div>
         <script src="{{ url_for('static', filename='scripts/learn.js') }}"></script>
