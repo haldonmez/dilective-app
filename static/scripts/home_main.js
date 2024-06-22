@@ -41,30 +41,39 @@ function navigateToIndex() {
   }, 2000);
 }
 
-// Functions to show and hide text on hover
 function showText1() {
-  document.getElementById('text1').style.opacity = '1';
+  hideAllTexts();
+  document.getElementById('text1').classList.add('vis');
 }
 
 function hideText1() {
-  document.getElementById('text1').style.opacity = '0';
+  document.getElementById('text1').classList.remove('vis');
 }
 
 function showText2() {
-  document.getElementById('text2').style.opacity = '1';
+  hideAllTexts();
+  document.getElementById('text2').classList.add('vis');
 }
 
 function hideText2() {
-  document.getElementById('text2').style.opacity = '0';
+  document.getElementById('text2').classList.remove('vis');
 }
 
 function showText3() {
-  document.getElementById('text3').style.opacity = '1';
+  hideAllTexts();
+  document.getElementById('text3').classList.add('vis');
 }
 
 function hideText3() {
-  document.getElementById('text3').style.opacity = '0';
+  document.getElementById('text3').classList.remove('vis');
 }
+
+function hideAllTexts() {
+  document.getElementById('text1').classList.remove('vis');
+  document.getElementById('text2').classList.remove('vis');
+  document.getElementById('text3').classList.remove('vis');
+}
+
 
 
 
