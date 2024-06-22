@@ -67,7 +67,7 @@ def upload_image():
     image_ready = crop_transparency(image)
     image_predict = image_transform(image_ready)
     
-    model_type = data.get('model_type', 'mnist')  # get the model type from the request data
+    model_type = data.get('model_type', 'emnist')  # get the model type from the request data
 
     if model_type == 'mnist':
         model = model_loading(image_predict)  # load the MNIST model

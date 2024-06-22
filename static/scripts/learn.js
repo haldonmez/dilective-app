@@ -121,8 +121,8 @@ window.onload = function() {
 
 
 function sendImageToServer(dataUrl) {
-
-    var modelType = localStorage.getItem('modelType') || 'mnist';  // Get the model type from localStorage
+    localStorage.setItem('modelType', 'emnist');  // Save the model type to localStorage
+    var modelType = localStorage.getItem('modelType') || 'emnist';  // Get the model type from localStorage
     
     // Log the data you're sending to the server
     console.log('Sending data to server:', { image: dataUrl, model_type: modelType });
