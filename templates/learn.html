@@ -5,17 +5,47 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Canvas Test</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/learn.css') }}">
     </head>
     <body>
         <div class="container2">
-            <div class="canvas-container" style="position: relative; width: 280px; height: 280px;">
+            <div class="canvas-container" style="position: relative; width: 560px; height: 280px;">
                 <img id="guideGif" src="{{ url_for('static', filename='letters_gif/B.gif') }}" alt="Guide GIF">
                 <canvas id="canvas"></canvas>
                 <button type="button" class="btn btn-outline-secondary clearButton" style="border: none; margin-left: -34px; position: absolute; top: 0; right: 0;">X</button>
             </div>
+            <div class="wrapper">
+                <div><button class="item item1">A</button></div>
+                <div><button class="item item2">B</button></div>
+                <div><button class="item item3">C</button></div>
+                <div><button class="item item4">D</button></div>
+                <div><button class="item item5">E</button></div>
+                <div><button class="item item6">F</button></div>
+                <div><button class="item item7">G</button></div>
+                <div><button class="item item8">H</button></div>
+                <div><button class="item item9">I</button></div>
+                <div><button class="item item10">J</button></div>
+                <div><button class="item item11">K</button></div>
+                <div><button class="item item12">L</button></div>
+                <div><button class="item item13">M</button></div>
+                <div><button class="item item14">N</button></div>
+                <div><button class="item item15">O</button></div>
+                <div><button class="item item16">P</button></div>
+                <div><button class="item item17">Q</button></div>
+                <div><button class="item item18">R</button></div>
+                <div><button class="item item19">S</button></div>
+                <div><button class="item item20">T</button></div>
+                <div><button class="item item21">U</button></div>
+                <div><button class="item item22">V</button></div>
+                <div><button class="item item23">W</button></div>
+                <div><button class="item item24">X</button></div>
+                <div><button class="item item25">Y</button></div>
+                <div><button class="item item26">Z</button></div>
+
+
+            </div>
         </div>
+        
         <script src="{{ url_for('static', filename='scripts/learn.js') }}"></script>
     </body> 
 </html>

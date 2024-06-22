@@ -1,7 +1,7 @@
 const canvas = document.getElementById('canvas')
 const context = canvas.getContext('2d')
 
-canvas.width = 280;
+canvas.width = 560;
 canvas.height = 280;
 
 context.strokeStyle = '#000000';  // Set the color of the lines to black
@@ -69,14 +69,8 @@ setInterval(function() {
 
     // If the canvas has changed, reset the download timeout
     clearTimeout(downloadTimeout);
-    spinnerTimeout = setTimeout(function(){
-        const spinner = document.querySelector('.spinner-border');
-        spinner.style.display = 'block';
-    }, 650); // 650 milisecond
     downloadTimeout = setTimeout(function() {
         sendImageToServer(dataUrl);
-        const spinner = document.querySelector('.spinner-border');
-        spinner.style.display = 'none';
     }, 2000);  // 2 seconds
 
     previousDataUrl = dataUrl;
@@ -102,19 +96,6 @@ function clearCanvas(canvas) {
 window.onload = function() {
     var canvas = document.getElementById('canvas');
     clearCanvas(canvas);
-
-    // Add event listeners to the buttons
-    document.querySelector('.digit-model-button').addEventListener('click', function() {
-        localStorage.setItem('modelType', 'mnist');  // Save the model type to localStorage
-
-        sendImageToServer(canvas.toDataURL("image/png", 1.0));
-    });
-
-    document.querySelector('.letter-model-button').addEventListener('click', function() {
-        localStorage.setItem('modelType', 'emnist');  // Save the model type to localStorage
-
-        sendImageToServer(canvas.toDataURL("image/png", 1.0), 'emnist');
-    });
 };
 
 
@@ -138,7 +119,7 @@ function sendImageToServer(dataUrl) {
     .then(response => response.json())  // Parse the JSON response
     .then(data => {
         // Update a label with the returned data
-        document.getElementsByClassName('prediction-card')[0].textContent = `Probability: ${data.probability}%\nPrediction: ${data.prediction}`;
+        console.log(`Probability: ${data.probability}%\nPrediction: ${data.prediction}`);
     })
     .catch((error) => {
         console.error('Error:', error);
@@ -147,3 +128,51 @@ function sendImageToServer(dataUrl) {
 
 
 
+const wrapper = document.querySelector('.wrapper');
+let isDragging = false;
+let startX;
+let scrollLeft;
+
+let animationID; // To store requestAnimationFrame ID
+
+function startDragging(e) {
+    isDragging = true;
+    startX = e.pageX || e.touches[0].pageX;
+    scrollLeft = wrapper.scrollLeft;
+    wrapper.style.cursor = 'grabbing';
+    // Stop automatic animation
+    pauseAnimation();
+}
+
+function drag(e) {
+    if (!isDragging) return;
+    e.preventDefault();
+    const x = e.pageX || e.touches[0].pageX;
+    const dragDistance = (x - startX);
+    wrapper.scrollLeft = scrollLeft - dragDistance;
+}
+
+function stopDragging() {
+    isDragging = false;
+    wrapper.style.cursor = 'grab';
+    // Resume automatic animation
+    resumeAnimation();
+}
+
+function pauseAnimation() {
+    wrapper.style.animationPlayState = 'paused';
+}
+
+function resumeAnimation() {
+    wrapper.style.animationPlayState = 'running';
+}
+
+// Mouse events
+wrapper.addEventListener('mousedown', startDragging);
+document.addEventListener('mousemove', drag);
+document.addEventListener('mouseup', stopDragging);
+
+// Touch events
+wrapper.addEventListener('touchstart', startDragging);
+document.addEventListener('touchmove', drag);
+document.addEventListener('touchend', stopDragging);
