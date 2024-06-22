@@ -4,12 +4,20 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins&display=swap">
+        <link rel="stylesheet" href="https://fonts.google.com/specimen/Montserrat+Alternates">
         <title>Canvas Test</title>
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/learn.css') }}">
     </head>
     <body>
         <div class="container2">
-            <div class="canvas-container" style="position: relative; width: 800px; height: 400px;">
+            <div class="navbar">
+                <div class="logo"><a class="logo" href="/">Dilektif</a></div>
+                <div class="nav-links">
+                    <a href="https://github.com/haldonmez">Github</a>
+                </div>
+            </div>
+            <div class="canvas-container" style="position: relative; width: 800px; height: 400px; margin-top: 80px; margin-bottom: -26px;">
                 <img id="guideGif" src="{{url_for('static',filename='letters_gif/B.gif')}}" alt="Guide GIF">
                 <canvas id="canvas"></canvas>
                 <button type="button" class="btn btn-outline-secondary clearButton" style="border: none; margin-left: -34px; position: absolute; top: 0; right: 0;">X</button>
@@ -41,8 +49,6 @@
                 <div><button class="item item24">X</button></div>
                 <div><button class="item item25">Y</button></div>
                 <div><button class="item item26">Z</button></div>
-
-
             </div>
         </div>
         
