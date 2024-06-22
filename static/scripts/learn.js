@@ -1,5 +1,6 @@
 const canvas = document.getElementById('canvas')
 const context = canvas.getContext('2d')
+const guideGif = document.getElementById('guideGif');
 
 canvas.width = 800;
 canvas.height = 400;
@@ -15,8 +16,13 @@ var isDrawing = false;
 var lastX = 0;
 var lastY = 0;
 
-// Reference to the GIF element
-const guideGif = document.getElementById('guideGif');
+// Function to load and display GIF for a specific button
+function displayGuideGif(letter) {
+    const gifPath = `/static/letters_gif/${letter}.gif`;
+    guideGif.src = gifPath;
+    console.log(guideGif.src)
+    guideGif.style.display = 'block';
+}
 
 // Event Listeners for Drawing
 canvas.addEventListener('mousedown', (event) => {
@@ -54,6 +60,21 @@ function draw(context, x, y) {
     context.stroke();
     [lastX, lastY] = [x, y];
 }
+
+// Function to reset canvas and show GIF for the clicked button
+function resetCanvas(letter) {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    displayGuideGif(letter);
+}
+
+// Event listeners for each button (item1 to item26)
+const items = document.querySelectorAll('.item');
+items.forEach((item) => {
+    const letter = item.textContent.trim();
+    item.addEventListener('click', () => {
+        resetCanvas(letter); // Reset canvas and display corresponding GIF
+    });
+});
 
 var previousDataUrl = null;
 var downloadTimeout = null;
@@ -176,3 +197,5 @@ document.addEventListener('mouseup', stopDragging);
 wrapper.addEventListener('touchstart', startDragging);
 document.addEventListener('touchmove', drag);
 document.addEventListener('touchend', stopDragging);
+
+

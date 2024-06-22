@@ -10,12 +10,12 @@
     <body>
         <div class="container2">
             <div class="canvas-container" style="position: relative; width: 800px; height: 400px;">
-                <img id="guideGif" src="{{ url_for('static', filename='letters_gif/B.gif') }}" alt="Guide GIF">
+                <img id="guideGif" src="{{url_for('static',filename='letters_gif/B.gif')}}" alt="Guide GIF">
                 <canvas id="canvas"></canvas>
                 <button type="button" class="btn btn-outline-secondary clearButton" style="border: none; margin-left: -34px; position: absolute; top: 0; right: 0;">X</button>
             </div>
             <div class="wrapper">
-                <div><button class="item item1">A</button></div>
+                <div><button class="item item1" onclick="displayGuideGif(A)">A</button></div>
                 <div><button class="item item2">B</button></div>
                 <div><button class="item item3">C</button></div>
                 <div><button class="item item4">D</button></div>
