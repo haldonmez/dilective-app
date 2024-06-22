@@ -1,8 +1,8 @@
 const canvas = document.getElementById('canvas')
 const context = canvas.getContext('2d')
 
-canvas.width = 560;
-canvas.height = 280;
+canvas.width = 800;
+canvas.height = 400;
 
 context.strokeStyle = '#000000';  // Set the color of the lines to black
 context.lineWidth = 7;  // Set the width of the lines to 5 pixels
