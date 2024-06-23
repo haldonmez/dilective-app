@@ -1,0 +1,264 @@
+html, body { 
+    height: 100%; 
+    margin: 0px;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    height: 100%;
+    overflow-x: hidden;
+    background-color: #ffffff;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.9);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.navbar .logo {
+    font-size: 1.5em;
+    font-weight: 700;
+    color: #1E611E;
+    text-decoration: none;
+}
+.navbar .nav-links a {
+    margin: 0 10px;
+    color: #1E611E;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.container2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+
+#canvas {
+    border: 1px solid black;
+    z-index: 1; /* Ensure canvas is above the GIF */
+}
+
+.canvas-container {
+    position: relative;
+    width: 500px; /* Same as canvas width */
+    height: 500px; /* Same as canvas height */
+}
+
+#guideGif {
+    position: absolute;
+    top: -30px;
+    left: -30px;
+    width: 110%;
+    height: 110%;
+    opacity: 0.15; /* Adjust opacity as needed */
+    z-index: 0; /* Ensure GIF is below the canvas */
+    pointer-events: none; /* Allows clicks to pass through to the canvas */
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    max-width: 1536px;
+    margin-inline: auto;
+    border: 1px solid black;
+    position: relative;
+    height: 100px;
+    margin-top: 5rem;
+    overflow: hidden;
+    mask-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0),
+        rgba(0, 0, 0, 1) 20%,
+        rgba(0, 0, 0, 1) 80%,
+        rgba(0, 0, 0, 0)
+    );
+}
+
+@keyframes scrollLeft {
+  to {
+    left: -200px;
+  }
+}
+
+.item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  font-size: 25px;
+  background: transparent;
+  border: none;
+  position: absolute;
+  top: 30px;
+  transition: .5s ease;
+  cursor: pointer;
+  left: max(calc(200px * 8), 100%);
+  animation-name: scrollLeft;
+  animation-duration: 60s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.item::before {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 2px;
+    width: 0;
+    background-color: #00ff51;
+    transition: .5s ease;
+  }
+  
+  .item:hover {
+    color: #34c310;
+    transition-delay: .5s;
+  }
+  
+  .item:hover::before {
+    width: 100%;
+  }
+  
+  .item::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 0;
+    width: 100%;
+    background-color: #a7f897;
+    transition: .4s ease;
+    z-index: -1;
+  }
+  
+  .item:hover::after {
+    height: 100%;
+    transition-delay: 0.4s;
+  }
+
+.item1 {
+    animation-delay: calc(60s / 26 * (26 - 1) * -1);
+}
+
+.item2 {
+    animation-delay: calc(60s / 26 * (26 - 2) * -1);
+}
+
+.item3 {
+    animation-delay: calc(60s / 26 * (26 - 3) * -1);
+}
+
+.item4 {
+    animation-delay: calc(60s / 26 * (26 - 4) * -1);
+}
+
+.item5 {
+    animation-delay: calc(60s / 26 * (26 - 5) * -1);
+}
+
+.item6 {
+    animation-delay: calc(60s / 26 * (26 - 6) * -1);
+}
+
+.item7 {
+    animation-delay: calc(60s / 26 * (26 - 7) * -1);
+}
+
+.item8 {
+    animation-delay: calc(60s / 26 * (26 - 8) * -1);
+}
+
+.item9 {
+    animation-delay: calc(60s / 26 * (26 - 9) * -1);
+}
+
+.item10 {
+    animation-delay: calc(60s / 26 * (26 - 10) * -1);
+}
+
+.item11 {
+    animation-delay: calc(60s / 26 * (26 - 11) * -1);
+}
+
+.item12 {
+    animation-delay: calc(60s / 26 * (26 - 12) * -1);
+}
+
+.item13 {
+    animation-delay: calc(60s / 26 * (26 - 13) * -1);
+}
+
+.item14 {
+    animation-delay: calc(60s / 26 * (26 - 14) * -1);
+}
+
+.item15 {
+    animation-delay: calc(60s / 26 * (26 - 15) * -1);
+}
+
+.item16 {
+    animation-delay: calc(60s / 26 * (26 - 16) * -1);
+}
+
+.item17 {
+    animation-delay: calc(60s / 26 * (26 - 17) * -1);
+}
+
+.item18 {
+    animation-delay: calc(60s / 26 * (26 - 18) * -1);
+}
+
+.item19 {
+    animation-delay: calc(60s / 26 * (26 - 19) * -1);
+}
+
+.item20 {
+    animation-delay: calc(60s / 26 * (26 - 20) * -1);
+}
+
+.item21 {
+    animation-delay: calc(60s / 26 * (26 - 21) * -1);
+}
+
+.item22 {
+    animation-delay: calc(60s / 26 * (26 - 22) * -1);
+}
+
+.item23 {
+    animation-delay: calc(60s / 26 * (26 - 23) * -1);
+}
+
+.item24 {
+    animation-delay: calc(60s / 26 * (26 - 24) * -1);
+}
+
+.item25 {
+    animation-delay: calc(60s / 26 * (26 - 25) * -1);
+}
+
+.item26 {
+    animation-delay: calc(60s / 26 * (26 - 26) * -1);
+}

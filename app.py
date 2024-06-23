@@ -57,6 +57,10 @@ def racing_page():
 def learning_page():
     return render_template("learn.html")
 
+@app.route("/listen.html", methods=["GET"])
+def listening_page():
+    return render_template("listen.html")
+
 @app.route("/upload-image", methods=["POST"])
 def upload_image():
     data = request.get_json()
