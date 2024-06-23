@@ -237,7 +237,7 @@ function handleButtonClick() {
     // Compare selectedValue with globalPrediction
     if (selectedValue === globalPrediction) {
         setLight('#6fff00');
-        //playSound('correct_sound.mp3');
+        playSound('static\\sounds\\correct.mp3');
         fix = 1
         // Animate for 2 seconds (2000 milliseconds)
         setTimeout(() => {
@@ -256,7 +256,7 @@ function handleButtonClick() {
 
     } else {
         setLight('#ff4b4b');
-        //playSound('incorrect_sound.mp3');
+        playSound('static\\sounds\\incorrect.mp3');
 
         // Animate for 2 seconds (2000 milliseconds)
         setTimeout(() => {
@@ -269,4 +269,10 @@ function handleButtonClick() {
 // Function to set light color
 function setLight(color) {  
     canvas.style.backgroundColor = color;
+}
+
+// Function to play sound
+function playSound(url) {
+    const audio = new Audio(url);
+    audio.play();
 }
