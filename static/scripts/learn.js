@@ -144,6 +144,9 @@ let globalPrediction;
             globalPrediction = data.prediction;
             // Update a label with the returned data
             console.log(`Probability: ${data.probability}%\nPrediction: ${data.prediction}`);
+            
+            // Call handleButtonClick to process the prediction
+            handleButtonClick();
         })
         .catch((error) => {
             console.error('Error:', error);
@@ -202,11 +205,13 @@ document.addEventListener('touchmove', drag);
 document.addEventListener('touchend', stopDragging);
 
 
+let selectedValue = "a";
+let index = 0
+let currentIndex = 0;
+const alphabet = ['a', 'b', 'c', 'd'];
 
 // Function to handle button clicks
-function handleButtonClick(button) {
-    const selectedValue = button.getAttribute('data-value');
-    let lowercaseStr = selectedValue.toLowerCase();
+function handleButtonClick() {
     
     // Check if globalPrediction is undefined
     if (globalPrediction === undefined) {
@@ -217,23 +222,44 @@ function handleButtonClick(button) {
     // Log globalPrediction for debugging
     console.log("The global prediction is: " + globalPrediction);
     console.log("The selected value is: " + selectedValue);
+    
+    const items = document.querySelectorAll('.item');
+    items.forEach((item) => {
+        const value = item.getAttribute('data-value'); // Get the data-value attribute
+        item.addEventListener('click', () => {
+            selectedValue = value // Call fetchPrediction with the data-value when clicked
+            index = alphabet.indexOf(value);
+        });
+    });
 
     // Compare selectedValue with globalPrediction
-    if (lowercaseStr === globalPrediction) {
-        setLight('green');
+    if (selectedValue === globalPrediction) {
+        setLight('#6fff00');
         //playSound('correct_sound.mp3');
+
+        // Animate for 2 seconds (2000 milliseconds)
+        setTimeout(() => {
+            setLight(''); // Reset light color
+            index++; // Move to the next letter
+            if (index < alphabet.length) {
+                selectedValue = alphabet[index];
+            } else {
+                console.log('Sequence completed.');// Handle completion of all letters if needed
+            }
+        }, 2000);
+
+
     } else {
-        setLight('red');
+        setLight('#ff4b4b');
         //playSound('incorrect_sound.mp3');
+
+        // Animate for 2 seconds (2000 milliseconds)
+        setTimeout(() => {
+            setLight(''); // Reset light color
+            // No need to change selectedValue or currentIndex on incorrect answer
+        }, 2000);
     }
 }
-
-// Add event listeners to all buttons with class 'item'
-document.querySelectorAll('.item').forEach(button => {
-    button.addEventListener('click', () => {
-        handleButtonClick(button);
-    });
-});
 
 // Function to set light color
 function setLight(color) {  
