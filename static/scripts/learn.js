@@ -208,7 +208,8 @@ document.addEventListener('touchend', stopDragging);
 let selectedValue = "a";
 let index = 0
 let currentIndex = 0;
-const alphabet = ['a', 'b', 'c', 'd'];
+let fix = 1;
+const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
 // Function to handle button clicks
 function handleButtonClick() {
@@ -223,28 +224,32 @@ function handleButtonClick() {
     console.log("The global prediction is: " + globalPrediction);
     console.log("The selected value is: " + selectedValue);
     
-    const items = document.querySelectorAll('.item');
-    items.forEach((item) => {
-        const value = item.getAttribute('data-value'); // Get the data-value attribute
-        item.addEventListener('click', () => {
-            selectedValue = value // Call fetchPrediction with the data-value when clicked
-            index = alphabet.indexOf(value);
-        });
-    });
+    if(fix === 1){  
+        const items = document.querySelectorAll('.item');
+        items.forEach((item) => {
+            const value = item.getAttribute('data-value'); // Get the data-value attribute
+            item.addEventListener('click', () => {
+                selectedValue = value // Call fetchPrediction with the data-value when clicked
+                index = alphabet.indexOf(value);
+            });
+        });};
 
     // Compare selectedValue with globalPrediction
     if (selectedValue === globalPrediction) {
         setLight('#6fff00');
         //playSound('correct_sound.mp3');
-
+        fix = 1
         // Animate for 2 seconds (2000 milliseconds)
         setTimeout(() => {
             setLight(''); // Reset light color
             index++; // Move to the next letter
+            console.log(index)
             if (index < alphabet.length) {
                 selectedValue = alphabet[index];
             } else {
                 console.log('Sequence completed.');// Handle completion of all letters if needed
+                index = -1;
+                fix = 0;
             }
         }, 2000);
 
