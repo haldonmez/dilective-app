@@ -119,33 +119,36 @@ window.onload = function() {
     clearCanvas(canvas);
 };
 
+// Declare a global variable
+let globalPrediction;
 
-function sendImageToServer(dataUrl) {
-    localStorage.setItem('modelType', 'emnist');  // Save the model type to localStorage
-    var modelType = localStorage.getItem('modelType') || 'emnist';  // Get the model type from localStorage
-    
-    // Log the data you're sending to the server
-    console.log('Sending data to server:', { image: dataUrl, model_type: modelType });
+    function sendImageToServer(dataUrl) {
+        localStorage.setItem('modelType', 'emnist');  // Save the model type to localStorage
+        var modelType = localStorage.getItem('modelType') || 'emnist';  // Get the model type from localStorage
+        
+        // Log the data you're sending to the server
+        console.log('Sending data to server:', { image: dataUrl, model_type: modelType });
 
-    fetch('/upload-image', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            image: dataUrl,
-            model_type: modelType  // include the model type
+        fetch('/upload-image', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                image: dataUrl,
+                model_type: modelType  // include the model type
+            })
         })
-    })
-    .then(response => response.json())  // Parse the JSON response
-    .then(data => {
-        // Update a label with the returned data
-        console.log(`Probability: ${data.probability}%\nPrediction: ${data.prediction}`);
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-    });
-}
+        .then(response => response.json())  // Parse the JSON response
+        .then(data => {
+            globalPrediction = data.prediction;
+            // Update a label with the returned data
+            console.log(`Probability: ${data.probability}%\nPrediction: ${data.prediction}`);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    }
 
 
 
@@ -199,3 +202,40 @@ document.addEventListener('touchmove', drag);
 document.addEventListener('touchend', stopDragging);
 
 
+
+// Function to handle button clicks
+function handleButtonClick(button) {
+    const selectedValue = button.getAttribute('data-value');
+    let lowercaseStr = selectedValue.toLowerCase();
+    
+    // Check if globalPrediction is undefined
+    if (globalPrediction === undefined) {
+        console.warn('Global prediction is undefined. Waiting for prediction data.');
+        return; // Exit function early, preventing further action
+    }
+
+    // Log globalPrediction for debugging
+    console.log("The global prediction is: " + globalPrediction);
+    console.log("The selected value is: " + selectedValue);
+
+    // Compare selectedValue with globalPrediction
+    if (lowercaseStr === globalPrediction) {
+        setLight('green');
+        //playSound('correct_sound.mp3');
+    } else {
+        setLight('red');
+        //playSound('incorrect_sound.mp3');
+    }
+}
+
+// Add event listeners to all buttons with class 'item'
+document.querySelectorAll('.item').forEach(button => {
+    button.addEventListener('click', () => {
+        handleButtonClick(button);
+    });
+});
+
+// Function to set light color
+function setLight(color) {  
+    canvas.style.backgroundColor = color;
+}
