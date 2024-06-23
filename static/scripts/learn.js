@@ -246,6 +246,7 @@ function handleButtonClick() {
             console.log(index)
             if (index < alphabet.length) {
                 selectedValue = alphabet[index];
+                displayGuideGif(alphabet[index].toUpperCase());
             } else {
                 console.log('Sequence completed.');// Handle completion of all letters if needed
                 selectedValue = "a"
@@ -265,6 +266,7 @@ function handleButtonClick() {
             setLight(''); // Reset light color
             // No need to change selectedValue or currentIndex on incorrect answer
             context.clearRect(0, 0, canvas.width, canvas.height);
+            displayGuideGif(alphabet[index].toUpperCase());
         }, 2000);
     }
 }
