@@ -248,9 +248,11 @@ function handleButtonClick() {
                 selectedValue = alphabet[index];
             } else {
                 console.log('Sequence completed.');// Handle completion of all letters if needed
-                index = -1;
+                selectedValue = "a"
+                index = 0;
                 fix = 0;
             }
+            context.clearRect(0, 0, canvas.width, canvas.height);
         }, 2000);
 
 
@@ -262,6 +264,7 @@ function handleButtonClick() {
         setTimeout(() => {
             setLight(''); // Reset light color
             // No need to change selectedValue or currentIndex on incorrect answer
+            context.clearRect(0, 0, canvas.width, canvas.height);
         }, 2000);
     }
 }
