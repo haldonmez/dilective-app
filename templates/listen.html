@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="https://fonts.google.com/specimen/Montserrat+Alternates">
         <title>Listen</title>
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/listen.css') }}">
+        <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
     </head>
     <body>
         <div class="container2">
@@ -17,10 +18,15 @@
                     <a href="https://github.com/haldonmez">Github</a>
                 </div>
             </div>
-            <div class="canvas-container" style="position: relative; width: 800px; height: 400px; margin-top: 80px; margin-bottom: -26px;">
-                <img id="guideGif" src="{{url_for('static',filename='letters_gif/B.gif')}}" alt="Guide GIF">
-                <canvas id="canvas"></canvas>
-                <button type="button" class="btn btn-outline-secondary clearButton" style="border: none; margin-left: -34px; position: absolute; top: 0; right: 0;">X</button>
+            <div class="main-content">
+                <div class="guide-card">
+                    <button onclick="clicked() "class="c-txt"><img class="c-txt"src="{{ url_for('static', filename='images/sound.png') }}" alt="Volume High Icon"></button>
+                  </div>
+                <div class="canvas-container" style="position: relative; width: 800px; height: 400px; margin-top: 80px; margin-bottom: -26px;">
+                    <img id="guideGif" src="{{url_for('static',filename='letters_gif/B.gif')}}" alt="Guide GIF">
+                    <canvas id="canvas"></canvas>
+                    <button type="button" class="btn btn-outline-secondary clearButton">X</button>
+                </div>  
             </div>
             <div class="wrapper">
                 <div><button class="item item1">A</button></div>

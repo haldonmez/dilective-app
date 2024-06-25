@@ -199,3 +199,6 @@ document.addEventListener('touchmove', drag);
 document.addEventListener('touchend', stopDragging);
 
 
+function clicked(){
+    console.log("Clicked the voice")
+}
