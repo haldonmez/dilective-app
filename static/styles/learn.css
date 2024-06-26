@@ -22,11 +22,22 @@ html, body {
 }
 
 .navbar .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 1.5em;
     font-weight: 700;
     color: #1E611E;
     text-decoration: none;
 }
+#icon_img{
+    padding-top: 0.25em;
+    padding-left: 0.25em;
+    padding-right: 0.25em;
+    padding-bottom: 0.25em;
+    margin-bottom: 0.25em;
+}
+
 .navbar .nav-links a {
     margin: 0 10px;
     color: #1E611E;

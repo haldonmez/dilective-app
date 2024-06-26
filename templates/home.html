@@ -4,14 +4,15 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Home</title>
+        <title>Dilektif</title>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins&display=swap">
         <link rel="stylesheet" href="https://fonts.google.com/specimen/Montserrat+Alternates">
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/home_styles.css') }}">
+        <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='icons/icon.ico') }}">
     </head>
     <body>
         <header class="navbar">
-            <div class="logo"><a class="logo" href="/">Dilektif</a></div>
+            <div class="logo"><a class="logo" href="/"><img id="icon_img" src="{{ url_for('static', filename='images/icon.png') }}" alt="Logo Icon" style="width: 1em; height: 1em; vertical-align: middle;">Dilektif</a></div>
             <div class="nav-links">
                 <a href="https://github.com/haldonmez">Github</a>
             </div>
