@@ -18,10 +18,8 @@ var lastY = 0;
 
 // Function to load and display GIF for a specific button
 function displayGuideGif(letter) {
-    const gifPath = `/static/letters_gif/${letter}.gif`;
-    guideGif.src = gifPath;
-    console.log(guideGif.src)
-    guideGif.style.display = 'block';
+    const audio = new Audio(`/static/sounds/letters/${letter}.mp3`);
+    audio.play();
 }
 
 // Event Listeners for Drawing
@@ -29,8 +27,6 @@ canvas.addEventListener('mousedown', (event) => {
     isDrawing = true;
     [lastX, lastY] = [event.offsetX, event.offsetY];
     
-    // Hide the GIF when drawing starts
-    guideGif.style.display = 'none';
 });
 
 // Event Listeners for Drawing
@@ -119,6 +115,8 @@ window.onload = function() {
     clearCanvas(canvas);
 };
 
+// Declare a global variable
+let globalPrediction;
 
 function sendImageToServer(dataUrl) {
     localStorage.setItem('modelType', 'emnist');  // Save the model type to localStorage
@@ -139,66 +137,116 @@ function sendImageToServer(dataUrl) {
     })
     .then(response => response.json())  // Parse the JSON response
     .then(data => {
+        globalPrediction = data.prediction;
         // Update a label with the returned data
         console.log(`Probability: ${data.probability}%\nPrediction: ${data.prediction}`);
+
+        // Call handleButtonClick to process the prediction
+        handleButtonClick();
     })
     .catch((error) => {
         console.error('Error:', error);
     });
 }
 
-
-
-const wrapper = document.querySelector('.wrapper');
-let isDragging = false;
-let startX;
-let scrollLeft;
-
-let animationID; // To store requestAnimationFrame ID
-
-function startDragging(e) {
-    isDragging = true;
-    startX = e.pageX || e.touches[0].pageX;
-    scrollLeft = wrapper.scrollLeft;
-    wrapper.style.cursor = 'grabbing';
-    // Stop automatic animation
-    pauseAnimation();
-}
-
-function drag(e) {
-    if (!isDragging) return;
-    e.preventDefault();
-    const x = e.pageX || e.touches[0].pageX;
-    const dragDistance = (x - startX);
-    wrapper.scrollLeft = scrollLeft - dragDistance;
-}
-
-function stopDragging() {
-    isDragging = false;
-    wrapper.style.cursor = 'grab';
-    // Resume automatic animation
-    resumeAnimation();
-}
-
-function pauseAnimation() {
-    wrapper.style.animationPlayState = 'paused';
-}
-
-function resumeAnimation() {
-    wrapper.style.animationPlayState = 'running';
-}
-
-// Mouse events
-wrapper.addEventListener('mousedown', startDragging);
-document.addEventListener('mousemove', drag);
-document.addEventListener('mouseup', stopDragging);
-
-// Touch events
-wrapper.addEventListener('touchstart', startDragging);
-document.addEventListener('touchmove', drag);
-document.addEventListener('touchend', stopDragging);
-
-
 function clicked(){
     console.log("Clicked the voice")
+}
+
+
+let selectedValue = "a";
+let index = 0
+let currentIndex = 0;
+let fix = 1;
+const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+
+// Function to handle button clicks
+function handleButtonClick() {
+    
+    // Check if globalPrediction is undefined
+    if (globalPrediction === undefined) {
+        console.warn('Global prediction is undefined. Waiting for prediction data.');
+        return; // Exit function early, preventing further action
+    }
+
+    // Log globalPrediction for debugging
+    console.log("The global prediction is: " + globalPrediction);
+    console.log("The selected value is: " + selectedValue);
+
+    // Compare selectedValue with globalPrediction
+    if (selectedValue === globalPrediction) {
+        setLight('#6fff00');
+        playSound('static\\sounds\\correct.mp3');
+        // Animate for 2 seconds (2000 milliseconds)
+        setTimeout(() => {
+            setLight(''); // Reset light color
+            index++; // Move to the next letter
+            console.log(index)
+            if (index < alphabet.length) {
+                selectedValue = alphabet[index];
+            } else {
+                console.log('Sequence completed.');// Handle completion of all letters if needed
+                index = 0;
+                selectedValue = alphabet[index]              
+            }
+            context.clearRect(0, 0, canvas.width, canvas.height);
+        }, 2000);
+
+
+    } else {
+        setLight('#ff4b4b');
+        playSound('static\\sounds\\incorrect.mp3');
+
+        // Animate for 2 seconds (2000 milliseconds)
+        setTimeout(() => {
+            setLight(''); // Reset light color
+            // No need to change selectedValue or currentIndex on incorrect answer
+            context.clearRect(0, 0, canvas.width, canvas.height);
+        }, 2000);
+    }
+}
+
+// Function to set light color
+function setLight(color) {  
+    canvas.style.backgroundColor = color;
+}
+
+// Function to play sound
+function playSound(url) {
+    const audio = new Audio(url);
+    audio.play();
+}
+
+
+
+// Function to handle button clicks
+function handleButtonClick2() {
+    // Check if globalPrediction is undefined
+    if (globalPrediction === undefined) {
+        console.warn('Global prediction is undefined. Waiting for prediction data.');
+        return; // Exit function early, preventing further action
+    }
+
+    // Log globalPrediction for debugging
+    console.log("The global prediction is: " + globalPrediction);
+    console.log("The selected value is: " + selectedValue);
+
+    // Compare selectedValue with globalPrediction
+    if (selectedValue === globalPrediction) {
+        fix = 1;
+        console.log(index);
+        if (index < alphabet.length) {
+            selectedValue = alphabet[index];
+            displayGuideGif(alphabet[index].toUpperCase());
+        } else {
+            console.log('Sequence completed.'); // Handle completion of all letters if needed
+            index = 0;
+            selectedValue = alphabet[index];
+            fix = 0;
+        }
+    } else {
+        // No need to change selectedValue or currentIndex on incorrect answer
+        displayGuideGif(alphabet[index].toUpperCase());
+    }
+    
 }
