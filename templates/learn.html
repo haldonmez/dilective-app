@@ -17,10 +17,15 @@
                     <a href="https://github.com/haldonmez">Github</a>
                 </div>
             </div>
-            <div class="canvas-container" style="position: relative; width: 800px; height: 400px; margin-top: 80px; margin-bottom: -26px;">
-                <img id="guideGif" src="{{url_for('static',filename='letters_gif/A.gif')}}" alt="Guide GIF">
-                <canvas id="canvas"></canvas>
-                <button type="button" class="btn btn-outline-secondary clearButton" style="border: none; margin-left: -34px; position: absolute; top: 0; right: 0;">X</button>
+            <div class="main-content">
+                <div class="guide-card">
+                    <button onclick="clicked() "class="c-txt"><span id="soundIcon" class="c-txt">Aa</span></button>
+                </div>
+                <div class="canvas-container" style="position: relative; width: 800px; height: 400px; margin-top: 80px; margin-bottom: -26px;">
+                    <img id="guideGif" src="{{url_for('static',filename='letters_gif/A.gif')}}" alt="Guide GIF">
+                    <canvas id="canvas"></canvas>
+                    <button type="button" class="btn btn-outline-secondary clearButton" style="border: none; margin-left: -34px; position: absolute; top: 0; right: 0;">X</button>
+                </div>
             </div>
             <div class="wrapper">
                 <div><button class="item item1" data-value="a">A</button></div>

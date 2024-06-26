@@ -24,6 +24,12 @@ function displayGuideGif(letter) {
     guideGif.style.display = 'block';
 }
 
+// Function to update the displayed letter based on the selected letter
+function updateSoundIcon(letter) {
+    const lowercase_letter = letter.toLowerCase()
+    soundIcon.textContent = letter + lowercase_letter;  // Update the text content to the selected letter
+}
+
 // Event Listeners for Drawing
 canvas.addEventListener('mousedown', (event) => {
     isDrawing = true;
@@ -65,6 +71,7 @@ function draw(context, x, y) {
 function resetCanvas(letter) {
     context.clearRect(0, 0, canvas.width, canvas.height);
     displayGuideGif(letter);
+    updateSoundIcon(letter);
 }
 
 // Event listeners for each button (item1 to item26)
@@ -247,10 +254,11 @@ function handleButtonClick() {
             if (index < alphabet.length) {
                 selectedValue = alphabet[index];
                 displayGuideGif(alphabet[index].toUpperCase());
+                updateSoundIcon(alphabet[index].toUpperCase());
             } else {
                 console.log('Sequence completed.');// Handle completion of all letters if needed
-                selectedValue = "a"
                 index = 0;
+                selectedValue = alphabet[index]              
                 fix = 0;
             }
             context.clearRect(0, 0, canvas.width, canvas.height);
