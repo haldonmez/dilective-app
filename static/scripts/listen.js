@@ -155,14 +155,15 @@ function clicked(){
 
 
 let selectedValue = "a";
-let index = 0
 let currentIndex = 0;
+let index = 0;
 let fix = 1;
 const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
+
 // Function to handle button clicks
 function handleButtonClick() {
-    
+    index = Math.floor(Math.random() * alphabet.length); // Move to the next letter
     // Check if globalPrediction is undefined
     if (globalPrediction === undefined) {
         console.warn('Global prediction is undefined. Waiting for prediction data.');
@@ -180,7 +181,7 @@ function handleButtonClick() {
         // Animate for 2 seconds (2000 milliseconds)
         setTimeout(() => {
             setLight(''); // Reset light color
-            index++; // Move to the next letter
+            
             console.log(index)
             if (index < alphabet.length) {
                 selectedValue = alphabet[index];
@@ -234,17 +235,12 @@ function handleButtonClick2() {
     // Compare selectedValue with globalPrediction
     if (selectedValue === globalPrediction) {
         fix = 1;
-        console.log(index);
+
         if (index < alphabet.length) {
             selectedValue = alphabet[index];
             displayGuideGif(alphabet[index].toUpperCase());
-        } else {
-            console.log('Sequence completed.'); // Handle completion of all letters if needed
-            index = 0;
-            selectedValue = alphabet[index];
-            fix = 0;
         }
-    } else {
+    } else {    
         // No need to change selectedValue or currentIndex on incorrect answer
         displayGuideGif(alphabet[index].toUpperCase());
     }
