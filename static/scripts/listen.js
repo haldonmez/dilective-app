@@ -225,6 +225,7 @@ function handleButtonClick2() {
     // Check if globalPrediction is undefined
     if (globalPrediction === undefined) {
         console.warn('Global prediction is undefined. Waiting for prediction data.');
+        displayGuideGif(alphabet[index].toUpperCase());
         return; // Exit function early, preventing further action
     }
 
