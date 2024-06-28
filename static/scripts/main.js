@@ -15,6 +15,8 @@ context.lineCap = 'round';  // Makes the line caps round
 var isDrawing = false;
 var lastX = 0;
 var lastY = 0;
+let timerStarted = false;
+let timerInterval;
 
 // Function to load and display GIF for a specific button
 function displayGuideGif(letter) {
@@ -22,17 +24,15 @@ function displayGuideGif(letter) {
     audio.play();
 }
 
-// Event Listeners for Drawing
-canvas.addEventListener('mousedown', (event) => {
-    isDrawing = true;
-    [lastX, lastY] = [event.offsetX, event.offsetY];
-    
-});
 
 // Event Listeners for Drawing
 canvas.addEventListener('mousedown', (event) => {
     isDrawing = true;
     [lastX, lastY] = [event.offsetX, event.offsetY]; // Adjusted to event.offsetX and event.offsetY
+    if (!timerStarted) {
+        startTimer();
+        timerStarted = true;
+    }
 });
 
 canvas.addEventListener('mouseup', () => {
@@ -163,7 +163,6 @@ const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm
 
 // Function to handle button clicks
 function handleButtonClick() {
-    index = Math.floor(Math.random() * alphabet.length); // Move to the next letter
     // Check if globalPrediction is undefined
     if (globalPrediction === undefined) {
         console.warn('Global prediction is undefined. Waiting for prediction data.');
@@ -176,6 +175,7 @@ function handleButtonClick() {
 
     // Compare selectedValue with globalPrediction
     if (selectedValue === globalPrediction) {
+        index = Math.floor(Math.random() * alphabet.length); // Move to the next letter
         setLight('#6fff00');
         playSound('static\\sounds\\correct.mp3');
         // Animate for 2 seconds (2000 milliseconds)
@@ -240,10 +240,38 @@ function handleButtonClick2() {
         if (index < alphabet.length) {
             selectedValue = alphabet[index];
             displayGuideGif(alphabet[index].toUpperCase());
+            console.log("The index in the correct part is:" + index)
         }
     } else {    
         // No need to change selectedValue or currentIndex on incorrect answer
         displayGuideGif(alphabet[index].toUpperCase());
+        console.log("The index in the incorrect part is:" + index)
     }
     
+}
+
+
+
+function startTimer() {
+    let timer = document.getElementById('timer');
+    let totalTime = 120; // 2 minutes in seconds
+
+    timerInterval = setInterval(function() {
+        if (totalTime <= 0) {
+            clearInterval(timerInterval);
+            timer.textContent = "0:00";
+            alert("Time's up!");
+            return;
+        }
+
+        totalTime--;
+        let minutes = Math.floor(totalTime / 60);
+        let seconds = totalTime % 60;
+        timer.textContent = (minutes < 10 ? "0" + minutes : minutes) + ":" + (seconds < 10 ? "0" + seconds : seconds);
+    }, 1000);
+}
+
+function handlePass() {
+    console.log("Pass button clicked");
+    // Add logic to handle the pass action
 }

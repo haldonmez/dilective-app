@@ -25,7 +25,11 @@
                 <div class="canvas-container" style="position: relative; width: 800px; height: 400px; margin-top: 80px; margin-bottom: -26px;">
                     <canvas id="canvas"></canvas>
                     <button type="button" class="btn btn-outline-secondary clearButton">X</button>
-                </div>  
+                </div> 
+                <div class="top-right-container">
+                    <div class="timer" id="timer">02:00</div>
+                    <button type="button" class="pass-button" onclick="handlePass()">Pass</button>
+                </div> 
             </div>
         </div>
         <script src="{{ url_for('static', filename='scripts/main.js') }}"></script>
