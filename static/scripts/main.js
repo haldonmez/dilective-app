@@ -162,7 +162,7 @@ let currentIndex = 0;
 let index = 0;
 let fix = 1;
 const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-
+let choose; 
 
 // Function to handle button clicks
 function handleButtonClick() {
@@ -194,6 +194,9 @@ function handleButtonClick() {
                 selectedValue = alphabet[index]              
             }
             context.clearRect(0, 0, canvas.width, canvas.height);
+            choose = Math.floor(Math.random() * 2);
+            letter = alphabet[index].toUpperCase()
+            updateGuideCard(choose, letter)
         }, 2000);
 
 
@@ -286,8 +289,30 @@ function scoreCard() {
     let probability = parseFloat(globalProbability);  // Ensure globalProbability is a number
 
     if (!isNaN(probability)) {
-        scoreValue += probability;  // Add the probability to the cumulative score
-        console.log("Score is: " + scoreValue.toFixed(6));  // Log the score to the console
-        scoreElement.textContent = scoreValue.toFixed(6);  // Update the scorecard with the formatted score
+        // Scale the probability to be between 0 and 10
+        let scaledProbability = probability / 10;
+
+        // Round the scaled probability to the nearest integer
+        let integerProbability = Math.round(scaledProbability);
+
+        // Update the scoreValue
+        scoreValue += integerProbability;
+
+        console.log("Score is: " + scoreValue);  // Log the score to the console
+        scoreElement.textContent = scoreValue;  // Update the scorecard with the score
+    }
+}
+
+
+function updateGuideCard(number, letter){
+    // Select the button element inside .guide-card
+    const buttonElement = document.querySelector('.guide-card button');
+
+    if (number ===1){
+        buttonElement.innerHTML = '';
+        buttonElement.textContent = letter
+    }
+    else{
+        buttonElement.innerHTML = `<img class="c-txt" src="{{ url_for('static', filename='images/sound.png') }}" alt="Volume High Icon">`;
     }
 }
