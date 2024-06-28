@@ -145,7 +145,6 @@ function sendImageToServer(dataUrl) {
 
         // Call handleButtonClick to process the prediction
         handleButtonClick();
-        scoreCard();
     })
     .catch((error) => {
         console.error('Error:', error);
@@ -161,7 +160,7 @@ let selectedValue = "a";
 let currentIndex = 0;
 let index = 0;
 let fix = 1;
-const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'r', 's', 't', 'u', 'v', 'y', 'z'];
 let choose; 
 
 // Function to handle button clicks
@@ -181,6 +180,7 @@ function handleButtonClick() {
         index = Math.floor(Math.random() * alphabet.length); // Move to the next letter
         setLight('#6fff00');
         playSound('static\\sounds\\correct.mp3');
+        scoreCard();
         // Animate for 2 seconds (2000 milliseconds)
         setTimeout(() => {
             setLight(''); // Reset light color
@@ -277,15 +277,26 @@ function startTimer() {
     }, 1000);
 }
 
+let scoreValue = 0;
+let scoreElement = document.getElementById('score');  // Corrected to use 'score' ID
+
 function handlePass() {
-    console.log("Pass button clicked");
-    // Add logic to handle the pass action
+    index = Math.floor(Math.random() * alphabet.length); // Move to the next letter
+    
+    choose = Math.floor(Math.random() * 2);
+    letter = alphabet[index].toUpperCase()
+
+    selectedValue = alphabet[index];
+
+    updateGuideCard(choose, letter)
+
+    scoreValue = scoreValue - 1
+    scoreElement.textContent = scoreValue;
+
+    console.log("Score value in handle pass is" + scoreValue)
 }
 
-let scoreValue = 0;
-
 function scoreCard() {
-    let scoreElement = document.getElementById('score');  // Corrected to use 'score' ID
     let probability = parseFloat(globalProbability);  // Ensure globalProbability is a number
 
     if (!isNaN(probability)) {
@@ -311,6 +322,12 @@ function updateGuideCard(number, letter){
     if (number ===1){
         buttonElement.innerHTML = '';
         buttonElement.textContent = letter
+
+        // Set CSS styles for the buttonElement
+        buttonElement.style.fontSize = '28px'; // Example: Set font size
+        buttonElement.style.color = '#000'; // Example: Set text color
+        buttonElement.style.padding = '10px'; // Example: Set padding
+        buttonElement.style.borderRadius = '5px'; // Example: Set border radius
     }
     else{
         buttonElement.innerHTML = `<img class="c-txt"src="/static/images/sound.png" alt="Volume High Icon">`;
