@@ -26,6 +26,7 @@
                     <button onclick="handleButtonClick2()"class="c-txt"><img class="c-txt"src="{{ url_for('static', filename='images/sound.png') }}" alt="Volume High Icon"></button>
                 </div>
                 <div class="canvas-container" style="position: relative; width: 800px; height: 400px; margin-top: 80px; margin-bottom: -26px;">
+                    <button id="play-button" class="play-button" onclick="startGame()">Play</button>
                     <canvas id="canvas"></canvas>
                     <button type="button" class="btn btn-outline-secondary clearButton">X</button>
                 </div> 

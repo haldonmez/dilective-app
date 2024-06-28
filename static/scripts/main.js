@@ -1,6 +1,10 @@
 const canvas = document.getElementById('canvas')
 const context = canvas.getContext('2d')
 const guideGif = document.getElementById('guideGif');
+const playButton = document.getElementById('play-button');
+let scoreElement = document.getElementById('score');  // Corrected to use 'score' ID
+
+
 
 canvas.width = 800;
 canvas.height = 400;
@@ -17,6 +21,7 @@ var lastX = 0;
 var lastY = 0;
 let timerStarted = false;
 let timerInterval;
+let scoreValue = 0;
 
 // Function to load and display GIF for a specific button
 function displayGuideGif(letter) {
@@ -24,6 +29,15 @@ function displayGuideGif(letter) {
     audio.play();
 }
 
+function startGame() {
+    if (!timerStarted) {
+        startTimer();
+        timerStarted = true;
+        playButton.classList.add('hidden');
+    } else {
+        resetGame();
+    }
+}
 
 // Event Listeners for Drawing
 canvas.addEventListener('mousedown', (event) => {
@@ -160,7 +174,7 @@ let selectedValue = "a";
 let currentIndex = 0;
 let index = 0;
 let fix = 1;
-const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'r', 's', 't', 'u', 'v', 'y', 'z'];
+const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'ı', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'r', 's', 't', 'u', 'v', 'y', 'z'];
 let choose; 
 
 // Function to handle button clicks
@@ -266,10 +280,16 @@ function startTimer() {
         if (totalTime <= 0) {
             clearInterval(timerInterval);
             timer.textContent = "0:00";
-            alert("Time's up!");
+            playButton.classList.remove('hidden');
+            playButton.textContent = scoreValue
+            setTimeout(() => {
+                scoreValue = 0;
+                scoreElement.textContent = scoreValue;
+                playButton.textContent = 'PLAY AGAIN'
+                timerStarted = false;
+            }, 5000);
             return;
         }
-
         totalTime--;
         let minutes = Math.floor(totalTime / 60);
         let seconds = totalTime % 60;
@@ -277,8 +297,15 @@ function startTimer() {
     }, 1000);
 }
 
-let scoreValue = 0;
-let scoreElement = document.getElementById('score');  // Corrected to use 'score' ID
+function resetGame() {
+    clearInterval(timerInterval);
+    totalTime = 120;
+    timerElement.textContent = "02:00";
+    timerStarted = false;
+    playButton.classList.add('hidden');
+    startTimer();
+}
+
 
 function handlePass() {
     index = Math.floor(Math.random() * alphabet.length); // Move to the next letter
