@@ -307,12 +307,12 @@ function scoreCard() {
 function updateGuideCard(number, letter){
     // Select the button element inside .guide-card
     const buttonElement = document.querySelector('.guide-card button');
-
+    console.log(number, letter)
     if (number ===1){
         buttonElement.innerHTML = '';
         buttonElement.textContent = letter
     }
     else{
-        buttonElement.innerHTML = `<img class="c-txt" src="{{ url_for('static', filename='images/sound.png') }}" alt="Volume High Icon">`;
+        buttonElement.innerHTML = `<img class="c-txt"src="/static/images/sound.png" alt="Volume High Icon">`;
     }
 }
