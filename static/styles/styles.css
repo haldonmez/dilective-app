@@ -54,6 +54,18 @@ html, body {
     flex-grow: 1;
 }
 
+.score-card {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #fff;
+    padding: 10px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+
 .guide-card {
     display: flex;
     justify-content: center;

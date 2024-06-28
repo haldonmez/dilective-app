@@ -117,6 +117,7 @@ window.onload = function() {
 
 // Declare a global variable
 let globalPrediction;
+let globalProbability;
 
 function sendImageToServer(dataUrl) {
     localStorage.setItem('modelType', 'emnist');  // Save the model type to localStorage
@@ -138,11 +139,13 @@ function sendImageToServer(dataUrl) {
     .then(response => response.json())  // Parse the JSON response
     .then(data => {
         globalPrediction = data.prediction;
+        globalProbability = data.probability;
         // Update a label with the returned data
         console.log(`Probability: ${data.probability}%\nPrediction: ${data.prediction}`);
 
         // Call handleButtonClick to process the prediction
         handleButtonClick();
+        scoreCard();
     })
     .catch((error) => {
         console.error('Error:', error);
@@ -274,4 +277,17 @@ function startTimer() {
 function handlePass() {
     console.log("Pass button clicked");
     // Add logic to handle the pass action
+}
+
+let scoreValue = 0;
+
+function scoreCard() {
+    let scoreElement = document.getElementById('score');  // Corrected to use 'score' ID
+    let probability = parseFloat(globalProbability);  // Ensure globalProbability is a number
+
+    if (!isNaN(probability)) {
+        scoreValue += probability;  // Add the probability to the cumulative score
+        console.log("Score is: " + scoreValue.toFixed(6));  // Log the score to the console
+        scoreElement.textContent = scoreValue.toFixed(6);  // Update the scorecard with the formatted score
+    }
 }
