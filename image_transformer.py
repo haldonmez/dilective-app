@@ -15,6 +15,5 @@ def image_transform(image):
     transformed_shaped_prediction_image = transformed_prediction_image[0].unsqueeze(0)
 
     last_prediction = transformed_shaped_prediction_image.unsqueeze(0).float()
-    print(last_prediction.shape)
 
     return last_prediction

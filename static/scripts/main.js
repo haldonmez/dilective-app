@@ -138,7 +138,7 @@ function sendImageToServer(dataUrl) {
     var modelType = localStorage.getItem('modelType') || 'emnist';  // Get the model type from localStorage
     
     // Log the data you're sending to the server
-    console.log('Sending data to server:', { image: dataUrl, model_type: modelType });
+    console.log('Sending data to server:', { image: dataUrl, model_type: modelType, class_name: selectedValue });
 
     fetch('/upload-image', {
         method: 'POST',
@@ -147,7 +147,8 @@ function sendImageToServer(dataUrl) {
         },
         body: JSON.stringify({
             image: dataUrl,
-            model_type: modelType  // include the model type
+            model_type: modelType,  // include the model type
+            class_name: selectedValue
         })
     })
     .then(response => response.json())  // Parse the JSON response

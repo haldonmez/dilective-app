@@ -16,18 +16,23 @@ MyDB = mysql.connector.connect(
 
 MyCursor = MyDB.cursor()
 
+
 # Create the database if it doesn't exist
 create_database(MyCursor)
 
-MyDB.database = "culs"
+MyDB.database = "culs" # Controlled, User, 
 
-MyCursor.execute("CREATE TABLE IF NOT EXISTS Images (id INTEGER(45) NOT NULL AUTO_INCREMENT PRIMARY KEY, Photo MEDIUMBLOB NOT NULL)")
+MyCursor.execute("""
+    CREATE TABLE IF NOT EXISTS Images (
+        id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        ClassName VARCHAR(25) NOT NULL,
+        Photo MEDIUMBLOB NOT NULL
+    )
+""")
 
-def InsertBlob(FilePath):
-    with open(FilePath, "rb") as File:
-        BinaryData = File.read()
-    SQLStatement = "INSERT INTO Images (Photo) VALUES (%s)"
-    MyCursor.execute(SQLStatement, (BinaryData, ))
+def InsertBlob(class_name, BinaryData):
+    SQLStatement = "INSERT INTO Images (ClassName, Photo) VALUES (%s, %s)"
+    MyCursor.execute(SQLStatement, (class_name, BinaryData, ))
     MyDB.commit()
 
 def RetrieveBlob(ID):
@@ -40,16 +45,4 @@ def RetrieveBlob(ID):
         File.write(MyResult)
         File.close()
 
-
-
-
-
-print("1. Insert Image\n2. Read Image")
-MenuInput = input()
-if int(MenuInput) == 1:
-    UserFilePath = input("Enter file path:")
-    InsertBlob(UserFilePath)
-elif int(MenuInput) == 2:
-    UserIDChoice = input("Enter ID:")
-    RetrieveBlob(UserIDChoice)
 

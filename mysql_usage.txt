@@ -1,0 +1,5 @@
+After Connecting to the database from MySQL.
+These commands can be used to reach the data.
+
+USE culs;
+SELECT * FROM Images;

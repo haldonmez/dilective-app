@@ -8,6 +8,7 @@ from model import LetterRecognizerModel4
 from model import model_loading_emnist
 from model import model_loading
 from image_transformer import image_transform
+from mysql_store import InsertBlob
 
 DigitRecognizerMNISTV3 = DigitRecognizerMNISTV3 
 
@@ -73,12 +74,20 @@ def upload_image():
     
     model_type = data.get('model_type', 'emnist')  # get the model type from the request data
 
+    class_name = data.get('class_name')
+
     if model_type == 'mnist':
         model = model_loading(image_predict)  # load the MNIST model
         probability, prediction = str(model[0]), str(model[1])
     elif model_type == "emnist":
         model = model_loading_emnist(image_predict)  # load the EMNIST model
         probability, prediction = str(model[0]), mapping.get(model[1], 'Unknown')  # map the prediction to a letter
+
+    if class_name == prediction:
+        InsertBlob(prediction, image_data)
+        print(f"The image has been saved to the database with {prediction}")
+    else:
+        print("The image data has not been saved to the database because class doesn't match with the value.")
 
     return jsonify({"probability": probability, "prediction": prediction}), 200
 
