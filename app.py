@@ -83,8 +83,20 @@ def upload_image():
         model = model_loading_emnist(image_predict)  # load the EMNIST model
         probability, prediction = str(model[0]), mapping.get(model[1], 'Unknown')  # map the prediction to a letter
 
+
+
     if class_name == prediction:
-        InsertBlob(prediction, image_data)
+        if image_ready.mode == 'RGBA':
+            image = image_ready.convert('RGB')
+            
+        image_resized = image_ready.resize((28, 28))
+
+        # Save the resized image to a BytesIO object
+        buffered = BytesIO()
+        image_resized.save(buffered, format="JPEG")  # You can use format="PNG" if preferred
+        binary_data = buffered.getvalue()
+
+        InsertBlob(prediction, binary_data)
         print(f"The image has been saved to the database with {prediction}")
     else:
         print("The image data has not been saved to the database because class doesn't match with the value.")
