@@ -20,19 +20,19 @@
             </div>
             <div class="main-content">
                 <div class="score-card">
-                    Score: <span id="score">0</span>
+                    Puan: <span id="score">0</span>
                 </div>
                 <div class="guide-card">
                     <button onclick="handleButtonClick2()"class="c-txt"><img class="c-txt"src="{{ url_for('static', filename='images/sound.png') }}" alt="Volume High Icon"></button>
                 </div>
                 <div class="canvas-container" style="position: relative; width: 800px; height: 400px; margin-top: 80px; margin-bottom: -26px;">
-                    <button id="play-button" class="play-button" onclick="startGame()">Play</button>
+                    <button id="play-button" class="play-button" onclick="startGame()">Oyna</button>
                     <canvas id="canvas"></canvas>
                     <button type="button" class="btn btn-outline-secondary clearButton">X</button>
                 </div> 
                 <div class="top-right-container">
                     <div class="timer" id="timer">02:00</div>
-                    <button type="button" class="pass-button" onclick="handlePass()">Pass</button>
+                    <button type="button" class="pass-button" onclick="handlePass()">Pas</button>
                 </div> 
             </div>
         </div>
