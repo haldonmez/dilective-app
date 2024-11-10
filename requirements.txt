@@ -3,5 +3,5 @@ matplotlib==3.9.2
 mysql_connector_repackaged==0.3.1
 Pillow==11.0.0
 torch==2.4.1
-torchvision==0.15.2
-triton==2.0.0 
+torchvision>=0.17.0,<0.21.0
+triton==2.0.0
