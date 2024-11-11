@@ -5,7 +5,7 @@ from io import BytesIO
 from utils.image_crop_invert import crop_transparency
 from utils.model import DigitRecognizerMNISTV3, LetterRecognizerModel4, model_loading_emnist, model_loading
 from utils.image_transformer import image_transform
-from mysql_store import InsertBlob
+#from mysql_store import InsertBlob - Will be added.
 
 DigitRecognizerMNISTV3 = DigitRecognizerMNISTV3 
 
