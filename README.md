@@ -3,7 +3,7 @@
 > Dilective is an interactive playground for young learners to create, adapt and learn. Dilective uses custom models built from scratch to recognize handwritten units to create an entertaining platform.
 
 ## Screenshot
-![](static\readme_images\image1.png)
+![](static/readme_images/image1.png)
 
 ## Getting Started
 
