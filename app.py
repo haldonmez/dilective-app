@@ -93,7 +93,7 @@ def upload_image():
         image_resized.save(buffered, format="JPEG")  # You can use format="PNG" if preferred
         binary_data = buffered.getvalue()
 
-        InsertBlob(prediction, binary_data)
+        #InsertBlob(prediction, binary_data)
         print(f"The image has been saved to the database with {prediction}")
     else:
         print("The image data has not been saved to the database because class doesn't match with the value.")
