@@ -106,8 +106,8 @@ digit_model = DigitRecognizerMNISTV3(input_shape=1, hidden_units=10, output_shap
 letter_model = LetterRecognizerModel4(input_size=1, output_size=27)
 
 # Load the models once when your application starts
-digit_model.load_state_dict(torch.load("models/03_pytorch_computer_vision_model_3.pth"))
-letter_model.load_state_dict(torch.load("models\\emnist_model_4_ver2.pth"))
+digit_model.load_state_dict(torch.load("models\\digit_model.pth"))
+letter_model.load_state_dict(torch.load("models\\letter_model_1.pth"))
 
 
 def model_loading(tensor):

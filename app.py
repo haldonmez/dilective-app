@@ -2,12 +2,9 @@ from flask import Flask, render_template, request, jsonify
 import base64
 from PIL import Image
 from io import BytesIO
-from image_crop_invert import crop_transparency
-from model import DigitRecognizerMNISTV3
-from model import LetterRecognizerModel4
-from model import model_loading_emnist
-from model import model_loading
-from image_transformer import image_transform
+from utils.image_crop_invert import crop_transparency
+from utils.model import DigitRecognizerMNISTV3, LetterRecognizerModel4, model_loading_emnist, model_loading
+from utils.image_transformer import image_transform
 from mysql_store import InsertBlob
 
 DigitRecognizerMNISTV3 = DigitRecognizerMNISTV3 
