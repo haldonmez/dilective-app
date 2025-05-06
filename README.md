@@ -1,6 +1,14 @@
-# Dilective
+ # 🧠 Dilective – Learn Through Handwriting
 
-> Dilective is an interactive playground for young learners to create, adapt and learn. Dilective uses custom models built from scratch to recognize handwritten units to create an entertaining platform.
+  Dilective is an interactive playground designed for young learners to **create**, **adapt**, and **learn** through handwriting.  
+  It uses a custom-built AI model to recognize handwritten characters, turning them into educational interactions.
+  
+## 🚀 Features
+
+  - ✍️ Handwriting recognition using a custom-trained model  
+  - 🖼️ Interactive canvas for drawing and input  
+  - 🧒 Child-friendly and intuitive UI  
+  - 🧪 Flask-based backend for rapid deployment
 
 ## Screenshot
 ![](static/readme_images/image1.png)
@@ -34,6 +42,19 @@ Say what the step will be
 
 End with an example of getting some data out of the system or using it for a little demo
 
+
+  ## 📁 Project Structure
+
+  ```text
+  dilective-app/
+  ├── static/               # Static assets like JS, CSS, images
+  ├── templates/            # HTML templates
+  ├── models/               # Handwriting recognition models
+  ├── predict/              # Prediction logic
+  ├── utils/                # Utility scripts
+  ├── app.py                # Flask entry point
+  └── requirements.txt      # Python dependencies
+  ```
 ## Running the tests
 
 
